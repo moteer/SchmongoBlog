@@ -1,0 +1,69 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myBlogEntryLabel">Create or edit a Blog Entry</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!blogEntry.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="blogEntry.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="blogEntry.title" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_text">Text</label>
+            <input type="text" class="form-control" name="text" id="field_text"
+                [(ngModel)]="blogEntry.text" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_picture">Picture</label>
+            <div>
+                <img [src]="'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture" style="max-height: 100px;" *ngIf="blogEntry.picture" alt="blogEntry image"/>
+                <div *ngIf="blogEntry.picture" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{blogEntry.pictureContentType}}, {{byteSize(blogEntry.picture)}}</span>
+                    <button type="button" (click)="clearInputImage('picture', 'pictureContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_picture" (change)="setFileData($event, blogEntry, 'picture', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="picture" id="field_picture"
+                [(ngModel)]="blogEntry.picture" />
+            <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                [(ngModel)]="blogEntry.pictureContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_thumbnail">Thumbnail</label>
+            <div>
+                <img [src]="'data:' + blogEntry.thumbnailContentType + ';base64,' + blogEntry.thumbnail" style="max-height: 100px;" *ngIf="blogEntry.thumbnail" alt="blogEntry image"/>
+                <div *ngIf="blogEntry.thumbnail" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{blogEntry.thumbnailContentType}}, {{byteSize(blogEntry.thumbnail)}}</span>
+                    <button type="button" (click)="clearInputImage('thumbnail', 'thumbnailContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_thumbnail" (change)="setFileData($event, blogEntry, 'thumbnail', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="thumbnail" id="field_thumbnail"
+                [(ngModel)]="blogEntry.thumbnail" />
+            <input type="hidden" class="form-control" name="thumbnailContentType" id="field_thumbnailContentType"
+                [(ngModel)]="blogEntry.thumbnailContentType" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
