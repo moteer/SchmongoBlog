@@ -63,15 +63,18 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="img/header-bg.jpg">
+<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="">
     <div class="overlay-bg overlay"></div>
     <div class="container">
         <div class="row fullscreen">
-            <div class="banner-content d-flex align-items-center col-lg-12 col-md-12">
-                <h1>
-                    Resi und Erik <br>
-                    auf Weltreisen ...
+            <div class="banner-content d-flex align-items-top col-lg-12 col-md-12">
+                <h1>title: {{latestBlog.title}}
+                    <br>
+                    <br>
+                    picture: {{latestBlog.pictureContentType}}
+                    <br>
                 </h1>
+                <img [src]="'data:' + latestBlog.pictureContentType + ';base64,' + latestBlog.picture" />
             </div>
             <div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
                 <div class="col-lg-6 flex-row d-flex meta-left no-padding">

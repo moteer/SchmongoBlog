@@ -12,9 +12,17 @@ import { Principal } from '../../shared';
     templateUrl: './blog.component.html'
 })
 export class BlogComponent implements OnInit, OnDestroy {
-blogs: Blog[];
+    blogs: Blog[];
     currentAccount: any;
     eventSubscriber: Subscription;
+    //latestBlog: Blog = new Blog("0", "Intial Title", "initialPictureContentType", "initialPicture");
+    latestBlog: Blog = {
+        id: "0",
+        title: "Intial Title",
+        pictureContentType: "initialPictureContentType",
+        picture: "initialPicture"
+    };
+    imageUrl: string = "";
 
     constructor(
         private blogService: BlogService,
@@ -25,10 +33,19 @@ blogs: Blog[];
     ) {
     }
 
+
+
     loadAll() {
         this.blogService.query().subscribe(
             (res: HttpResponse<Blog[]>) => {
                 this.blogs = res.body;
+                this.latestBlog = this.blogs[0];
+                console.log(this.latestBlog.pictureContentType);
+                console.log(this.latestBlog.picture);
+
+                this.imageUrl = 'data:' + this.latestBlog.pictureContentType + ';base64,' + this.latestBlog.picture;
+                console.log("*************************************************************************************");
+                console.log('data:' + this.latestBlog.pictureContentType + ';base64,' + this.latestBlog.picture);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
@@ -56,6 +73,7 @@ blogs: Blog[];
     openFile(contentType, field) {
         return this.dataUtils.openFile(contentType, field);
     }
+
     registerChangeInBlogs() {
         this.eventSubscriber = this.eventManager.subscribe('blogListModification', (response) => this.loadAll());
     }
