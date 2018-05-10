@@ -13,6 +13,7 @@ import { NotificationInterceptor } from './blocks/interceptor/notification.inter
 import { SchmongoBlogSharedModule, UserRouteAccessService } from './shared';
 import { SchmongoBlogAppRoutingModule} from './app-routing.module';
 import { SchmongoBlogHomeModule } from './home/home.module';
+import { SchmongoBlogDemoModule } from './demo/demo.module';
 import { SchmongoBlogAdminModule } from './admin/admin.module';
 import { SchmongoBlogAccountModule } from './account/account.module';
 import { SchmongoBlogEntityModule } from './entities/entity.module';
@@ -34,6 +35,7 @@ import {
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         SchmongoBlogSharedModule,
         SchmongoBlogHomeModule,
+        SchmongoBlogDemoModule,
         SchmongoBlogAdminModule,
         SchmongoBlogAccountModule,
         SchmongoBlogEntityModule,

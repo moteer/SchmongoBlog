@@ -39,13 +39,6 @@ export class BlogComponent implements OnInit, OnDestroy {
         this.blogService.query().subscribe(
             (res: HttpResponse<Blog[]>) => {
                 this.blogs = res.body;
-                this.latestBlog = this.blogs[0];
-                console.log(this.latestBlog.pictureContentType);
-                console.log(this.latestBlog.picture);
-
-                this.imageUrl = 'data:' + this.latestBlog.pictureContentType + ';base64,' + this.latestBlog.picture;
-                console.log("*************************************************************************************");
-                console.log('data:' + this.latestBlog.pictureContentType + ';base64,' + this.latestBlog.picture);
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
