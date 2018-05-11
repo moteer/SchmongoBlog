@@ -18,6 +18,7 @@ import { SchmongoBlogAdminModule } from './admin/admin.module';
 import { SchmongoBlogAccountModule } from './account/account.module';
 import { SchmongoBlogEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
+import { OwlModule } from 'ngx-owl-carousel';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -39,6 +40,7 @@ import {
         SchmongoBlogAdminModule,
         SchmongoBlogAccountModule,
         SchmongoBlogEntityModule,
+        OwlModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
