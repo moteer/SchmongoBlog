@@ -29,6 +29,8 @@ import {
     ErrorComponent
 } from './layouts';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -40,7 +42,8 @@ import {
         SchmongoBlogAdminModule,
         SchmongoBlogAccountModule,
         SchmongoBlogEntityModule,
-        OwlModule
+        OwlModule,
+        NgbModule.forRoot()
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
