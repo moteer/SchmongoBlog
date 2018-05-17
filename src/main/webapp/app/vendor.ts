@@ -7,7 +7,3 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/throw';
 // jhipster-needle-add-element-to-vendor - JHipster will add new menu items here
 
-import 'script-loader!jquery';
-import 'script-loader!owl.carousel';
-
-import '../content/js/main.js'
