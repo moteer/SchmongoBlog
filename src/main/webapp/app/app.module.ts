@@ -30,6 +30,7 @@ import {
 } from './layouts';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {DemoComponent} from "./demo";
 
 @NgModule({
     imports: [
@@ -47,6 +48,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
+        DemoComponent,
         JhiMainComponent,
         NavbarComponent,
         ErrorComponent,

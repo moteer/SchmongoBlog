@@ -11,7 +11,6 @@ import { DEMO_ROUTE, DemoComponent } from './';
         RouterModule.forChild([ DEMO_ROUTE ])
     ],
     declarations: [
-        DemoComponent,
     ],
     entryComponents: [
     ],
@@ -19,4 +18,4 @@ import { DEMO_ROUTE, DemoComponent } from './';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SchmongoBlogDemoModule {}
+export class SchmongoBlogDemoModule { }

@@ -9,6 +9,8 @@ import { Title } from '@angular/platform-browser';
 })
 export class JhiMainComponent implements OnInit {
 
+    private isAdmin: boolean = false;
+
     constructor(
         private titleService: Title,
         private router: Router
@@ -28,5 +30,10 @@ export class JhiMainComponent implements OnInit {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
         });
+    }
+
+    toggleAdmin() {
+        this.isAdmin = !this.isAdmin;
+        console.log("this.isAdmin = " + this.isAdmin);
     }
 }

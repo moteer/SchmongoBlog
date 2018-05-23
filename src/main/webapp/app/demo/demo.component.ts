@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
@@ -24,6 +24,9 @@ export class DemoComponent implements OnInit {
     blog: Blog;
     blogEntries: BlogEntry[] = [{id: "id", title: "title"}];
 
+
+    @Output()
+    adminButtonToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
@@ -72,5 +75,9 @@ export class DemoComponent implements OnInit {
 
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    toggleAdmin() {
+        this.adminButtonToggled.emit(true);
     }
 }
