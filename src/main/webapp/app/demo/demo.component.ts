@@ -80,4 +80,13 @@ export class DemoComponent implements OnInit {
     toggleAdmin() {
         this.adminButtonToggled.emit(true);
     }
+
+    getAlignmentFor(index: number) {
+        console.log("index: " + index);
+        console.log("index % 2 =  " + (index % 2));
+        if (index % 2 == 0) {
+            return "travel-left";
+        }
+        return "travel-right";
+    }
 }

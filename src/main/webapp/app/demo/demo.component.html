@@ -53,7 +53,7 @@
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <h1 class="mb-10">Hier findest du die letzten Einträge aus allen Kategorien</h1>
-                    <p></p>
+                    <p>Anzahl Blogeinträge {{blogEntries.length}} </p>
                 </div>
             </div>
         </div>
@@ -61,8 +61,8 @@
             <ng-template *ngFor="let blogEntry of blogEntries" ngbSlide>
                 <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide">
                 <div class="carousel-caption">
-                    <h3>First slide label</h3>
-                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    <h3>{{blogEntry.title}}</h3>
+                    <p>{{blogEntry.text}}</p>
                 </div>
             </ng-template>
         </ngb-carousel>
@@ -81,11 +81,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-6 travel-left">
+        <div class="row" *ngFor="let blogEntry of blogEntries; let i = index">
+            <div class="col-lg-6 {{getAlignmentFor(i)}}">
                 <div class="single-travel media  pb-70">
                     <a href="goodbyezuerich.html">
-                        <img class="img-fluid d-flex  mr-3" src="" alt="">
+                        <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     </a>
                     <div class="dates">
                         <span>20</span>
@@ -93,31 +93,13 @@
                     </div>
                     <div class="media-body align-self-center">
                         <h4 class="mt-0"><a href="goodbyezuerich.html">Auf Wiedersehen Zürich</a></h4>
-                        <p>Nach über einem Jahr im wunderschönen Zürich geht es nun pünktlich am 01.06.2018 wieder los für uns Zwei ...</p>
+                        <p>{{blogEntry.text}}</p>
                         <div class="meta-bottom d-flex justify-content-between">
                             <p><span class="lnr lnr-heart"></span> 15 Likes</p>
                             <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-6 travel-right">
-                <div class="single-travel media pb-70">
-                    <img class="img-fluid d-flex  mr-3" src="" alt="">
-                    <div class="dates">
-                        <span>20</span>
-                        <p>Dec</p>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#">3000 Meter hoch ragt der Rinjani in den Himmel auf der Insel Lombok</a></h4>
-                        <p>Diese Wanderung hat uns einiges an Kraft gekostet. Drei Tage und zwei Nächte haben wir auf dem Vulkan am Feuerring verbracht ...</p>
-                        <div class="meta-bottom d-flex justify-content-between">
-                            <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                            <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" class="primary-btn load-more pbtn-2 text-uppercase mx-auto mt-60">Load More </a>
             </div>
         </div>
     </div>
