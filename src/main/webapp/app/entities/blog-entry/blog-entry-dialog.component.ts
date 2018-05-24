@@ -18,6 +18,7 @@ export class BlogEntryDialogComponent implements OnInit {
 
     blogEntry: BlogEntry;
     isSaving: boolean;
+    dateDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,

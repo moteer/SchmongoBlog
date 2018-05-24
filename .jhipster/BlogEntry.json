@@ -21,6 +21,19 @@
             "fieldName": "thumbnail",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "shortDescription",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "pictures",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
         }
     ],
     "dto": "no",

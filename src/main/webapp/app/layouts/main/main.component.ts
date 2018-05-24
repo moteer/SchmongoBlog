@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class JhiMainComponent implements OnInit {
 
-    private isAdmin: boolean = false;
+    isAdmin = false;
 
     constructor(
         private titleService: Title,
@@ -34,6 +34,5 @@ export class JhiMainComponent implements OnInit {
 
     toggleAdmin() {
         this.isAdmin = !this.isAdmin;
-        console.log("this.isAdmin = " + this.isAdmin);
     }
 }

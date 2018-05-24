@@ -15,14 +15,13 @@ export class BlogComponent implements OnInit, OnDestroy {
     blogs: Blog[];
     currentAccount: any;
     eventSubscriber: Subscription;
-    //latestBlog: Blog = new Blog("0", "Intial Title", "initialPictureContentType", "initialPicture");
     latestBlog: Blog = {
-        id: "0",
-        title: "Intial Title",
-        pictureContentType: "initialPictureContentType",
-        picture: "initialPicture"
+        id: '0',
+        title: 'Intial Title',
+        pictureContentType: 'initialPictureContentType',
+        picture: 'initialPicture'
     };
-    imageUrl: string = "";
+    imageUrl = '';
 
     constructor(
         private blogService: BlogService,
@@ -32,8 +31,6 @@ export class BlogComponent implements OnInit, OnDestroy {
         private principal: Principal
     ) {
     }
-
-
 
     loadAll() {
         this.blogService.query().subscribe(

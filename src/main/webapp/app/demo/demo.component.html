@@ -23,7 +23,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="">
+<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="content/img/header-bg.jpg">
     <div class="overlay-bg overlay"></div>
     <div class="container">
         <div class="row fullscreen">
@@ -81,47 +81,6 @@
                 </div>
             </div>
         </div>
-        <!--
-        <div class="row" *ngFor="let blogEntry of blogEntries; let i = index">
-            <div class="col-lg-6 travel-left">
-                <div class="single-travel media  pb-70">
-                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                    <div class="dates">
-                        <span>20</span>
-                        <p>Dec</p>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="goodbyezuerich.html">Auf Wiedersehen Zürich</a></h4>
-                        <p>{{blogEntry.text}}</p>
-                        <div class="meta-bottom d-flex justify-content-between">
-                            <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                            <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" *ngFor="let blogEntry of blogEntries; let i = index">
-            <div class="col-lg-6 travel-right">
-                <div class="single-travel media  pb-70">
-                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                    <div class="dates">
-                        <span>20</span>
-                        <p>Dec</p>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="goodbyezuerich.html">Auf Wiedersehen Zürich</a></h4>
-                        <p>{{blogEntry.text}}</p>
-                        <div class="meta-bottom d-flex justify-content-between">
-                            <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                            <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        -->
-
         <div class="row">
             <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
                 <div class="single-travel media pb-70" >

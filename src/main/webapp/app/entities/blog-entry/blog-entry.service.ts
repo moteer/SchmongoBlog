@@ -3,6 +3,8 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { SERVER_API_URL } from '../../app.constants';
 
+import { JhiDateUtils } from 'ng-jhipster';
+
 import { BlogEntry } from './blog-entry.model';
 import { createRequestOption } from '../../shared';
 
@@ -13,7 +15,7 @@ export class BlogEntryService {
 
     private resourceUrl =  SERVER_API_URL + 'api/blog-entries';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
     create(blogEntry: BlogEntry): Observable<EntityResponseType> {
         const copy = this.convert(blogEntry);
@@ -61,6 +63,8 @@ export class BlogEntryService {
      */
     private convertItemFromServer(blogEntry: BlogEntry): BlogEntry {
         const copy: BlogEntry = Object.assign({}, blogEntry);
+        copy.date = this.dateUtils
+            .convertLocalDateFromServer(blogEntry.date);
         return copy;
     }
 
@@ -69,6 +73,8 @@ export class BlogEntryService {
      */
     private convert(blogEntry: BlogEntry): BlogEntry {
         const copy: BlogEntry = Object.assign({}, blogEntry);
+        copy.date = this.dateUtils
+            .convertLocalDateToServer(blogEntry.date);
         return copy;
     }
 }

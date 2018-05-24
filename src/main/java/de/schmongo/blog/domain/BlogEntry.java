@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -35,6 +36,18 @@ public class BlogEntry implements Serializable {
 
     @Field("thumbnail_content_type")
     private String thumbnailContentType;
+
+    @Field("date")
+    private LocalDate date;
+
+    @Field("short_description")
+    private String shortDescription;
+
+    @Field("pictures")
+    private byte[] pictures;
+
+    @Field("pictures_content_type")
+    private String picturesContentType;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
@@ -122,6 +135,58 @@ public class BlogEntry implements Serializable {
     public void setThumbnailContentType(String thumbnailContentType) {
         this.thumbnailContentType = thumbnailContentType;
     }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public BlogEntry date(LocalDate date) {
+        this.date = date;
+        return this;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public BlogEntry shortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+        return this;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public byte[] getPictures() {
+        return pictures;
+    }
+
+    public BlogEntry pictures(byte[] pictures) {
+        this.pictures = pictures;
+        return this;
+    }
+
+    public void setPictures(byte[] pictures) {
+        this.pictures = pictures;
+    }
+
+    public String getPicturesContentType() {
+        return picturesContentType;
+    }
+
+    public BlogEntry picturesContentType(String picturesContentType) {
+        this.picturesContentType = picturesContentType;
+        return this;
+    }
+
+    public void setPicturesContentType(String picturesContentType) {
+        this.picturesContentType = picturesContentType;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -154,6 +219,10 @@ public class BlogEntry implements Serializable {
             ", pictureContentType='" + getPictureContentType() + "'" +
             ", thumbnail='" + getThumbnail() + "'" +
             ", thumbnailContentType='" + getThumbnailContentType() + "'" +
+            ", date='" + getDate() + "'" +
+            ", shortDescription='" + getShortDescription() + "'" +
+            ", pictures='" + getPictures() + "'" +
+            ", picturesContentType='" + getPicturesContentType() + "'" +
             "}";
     }
 }

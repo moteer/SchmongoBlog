@@ -29,6 +29,13 @@ export class BlogEntryPopupService {
                 this.blogEntryService.find(id)
                     .subscribe((blogEntryResponse: HttpResponse<BlogEntry>) => {
                         const blogEntry: BlogEntry = blogEntryResponse.body;
+                        if (blogEntry.date) {
+                            blogEntry.date = {
+                                year: blogEntry.date.getFullYear(),
+                                month: blogEntry.date.getMonth() + 1,
+                                day: blogEntry.date.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.blogEntryModalRef(component, blogEntry);
                         resolve(this.ngbModalRef);
                     });

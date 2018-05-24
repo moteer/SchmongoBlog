@@ -30,7 +30,7 @@ import {
 } from './layouts';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DemoComponent} from "./demo";
+import {DemoComponent} from './demo';
 
 @NgModule({
     imports: [

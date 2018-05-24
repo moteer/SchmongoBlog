@@ -2,16 +2,16 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
-import {BlogEntryService} from "../entities/blog-entry";
-import {BlogService} from "../entities/blog";
+import {BlogEntryService} from '../entities/blog-entry';
+import {BlogService} from '../entities/blog';
 
 import {Account, LoginModalService, Principal} from '../shared';
-import {BlogEntry} from "../entities/blog-entry";
-import {Blog} from "../entities/blog";
-import {HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {BlogEntry} from '../entities/blog-entry';
+import {Blog} from '../entities/blog';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Component({
-    selector: 'demo',
+    selector: 'jhi-demo',
     templateUrl: './demo.component.html',
     styleUrls: [
         'demo.scss'
@@ -22,13 +22,12 @@ export class DemoComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
     blog: Blog;
-    blogEntries: BlogEntry[] = [{id: "id", title: "title"}];
+    blogEntries: BlogEntry[] = [{id: 'id', title: 'title'}];
     evenBlogEntries: BlogEntry[] = [];
     oddBlogEntries: BlogEntry[] = [];
 
-
     @Output()
-    adminButtonToggled:EventEmitter<boolean> = new EventEmitter<boolean>();
+    adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
@@ -62,10 +61,9 @@ export class DemoComponent implements OnInit {
 
     private assignEvenAndOddBlogEntries() {
         for (let i = 0; i < this.blogEntries.length; i++) {
-            if (i % 2 == 0) {
+            if (i % 2 === 0) {
                 this.evenBlogEntries.push(this.blogEntries[i]);
-            }
-            else {
+            } else {
                 this.oddBlogEntries.push(this.blogEntries[i]);
             }
         }

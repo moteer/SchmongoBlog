@@ -9,6 +9,10 @@ export class BlogEntry implements BaseEntity {
         public picture?: any,
         public thumbnailContentType?: string,
         public thumbnail?: any,
+        public date?: any,
+        public shortDescription?: string,
+        public picturesContentType?: string,
+        public pictures?: any,
     ) {
     }
 }

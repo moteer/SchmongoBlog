@@ -20,6 +20,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.util.Base64Utils;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import static de.schmongo.blog.web.rest.TestUtil.createFormattingConversionService;
@@ -52,6 +54,17 @@ public class BlogEntryResourceIntTest {
     private static final byte[] UPDATED_THUMBNAIL = TestUtil.createByteArray(2, "1");
     private static final String DEFAULT_THUMBNAIL_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_THUMBNAIL_CONTENT_TYPE = "image/png";
+
+    private static final LocalDate DEFAULT_DATE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_DATE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final String DEFAULT_SHORT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_SHORT_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_PICTURES = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_PICTURES = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_PICTURES_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_PICTURES_CONTENT_TYPE = "image/png";
 
     @Autowired
     private BlogEntryRepository blogEntryRepository;
@@ -93,7 +106,11 @@ public class BlogEntryResourceIntTest {
             .picture(DEFAULT_PICTURE)
             .pictureContentType(DEFAULT_PICTURE_CONTENT_TYPE)
             .thumbnail(DEFAULT_THUMBNAIL)
-            .thumbnailContentType(DEFAULT_THUMBNAIL_CONTENT_TYPE);
+            .thumbnailContentType(DEFAULT_THUMBNAIL_CONTENT_TYPE)
+            .date(DEFAULT_DATE)
+            .shortDescription(DEFAULT_SHORT_DESCRIPTION)
+            .pictures(DEFAULT_PICTURES)
+            .picturesContentType(DEFAULT_PICTURES_CONTENT_TYPE);
         return blogEntry;
     }
 
@@ -123,6 +140,10 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getPictureContentType()).isEqualTo(DEFAULT_PICTURE_CONTENT_TYPE);
         assertThat(testBlogEntry.getThumbnail()).isEqualTo(DEFAULT_THUMBNAIL);
         assertThat(testBlogEntry.getThumbnailContentType()).isEqualTo(DEFAULT_THUMBNAIL_CONTENT_TYPE);
+        assertThat(testBlogEntry.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testBlogEntry.getShortDescription()).isEqualTo(DEFAULT_SHORT_DESCRIPTION);
+        assertThat(testBlogEntry.getPictures()).isEqualTo(DEFAULT_PICTURES);
+        assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(DEFAULT_PICTURES_CONTENT_TYPE);
     }
 
     @Test
@@ -158,7 +179,11 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.[*].pictureContentType").value(hasItem(DEFAULT_PICTURE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].picture").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURE))))
             .andExpect(jsonPath("$.[*].thumbnailContentType").value(hasItem(DEFAULT_THUMBNAIL_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].thumbnail").value(hasItem(Base64Utils.encodeToString(DEFAULT_THUMBNAIL))));
+            .andExpect(jsonPath("$.[*].thumbnail").value(hasItem(Base64Utils.encodeToString(DEFAULT_THUMBNAIL))))
+            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
+            .andExpect(jsonPath("$.[*].picturesContentType").value(hasItem(DEFAULT_PICTURES_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].pictures").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURES))));
     }
 
     @Test
@@ -176,7 +201,11 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.pictureContentType").value(DEFAULT_PICTURE_CONTENT_TYPE))
             .andExpect(jsonPath("$.picture").value(Base64Utils.encodeToString(DEFAULT_PICTURE)))
             .andExpect(jsonPath("$.thumbnailContentType").value(DEFAULT_THUMBNAIL_CONTENT_TYPE))
-            .andExpect(jsonPath("$.thumbnail").value(Base64Utils.encodeToString(DEFAULT_THUMBNAIL)));
+            .andExpect(jsonPath("$.thumbnail").value(Base64Utils.encodeToString(DEFAULT_THUMBNAIL)))
+            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
+            .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
+            .andExpect(jsonPath("$.picturesContentType").value(DEFAULT_PICTURES_CONTENT_TYPE))
+            .andExpect(jsonPath("$.pictures").value(Base64Utils.encodeToString(DEFAULT_PICTURES)));
     }
 
     @Test
@@ -200,7 +229,11 @@ public class BlogEntryResourceIntTest {
             .picture(UPDATED_PICTURE)
             .pictureContentType(UPDATED_PICTURE_CONTENT_TYPE)
             .thumbnail(UPDATED_THUMBNAIL)
-            .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE);
+            .thumbnailContentType(UPDATED_THUMBNAIL_CONTENT_TYPE)
+            .date(UPDATED_DATE)
+            .shortDescription(UPDATED_SHORT_DESCRIPTION)
+            .pictures(UPDATED_PICTURES)
+            .picturesContentType(UPDATED_PICTURES_CONTENT_TYPE);
 
         restBlogEntryMockMvc.perform(put("/api/blog-entries")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -217,6 +250,10 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getPictureContentType()).isEqualTo(UPDATED_PICTURE_CONTENT_TYPE);
         assertThat(testBlogEntry.getThumbnail()).isEqualTo(UPDATED_THUMBNAIL);
         assertThat(testBlogEntry.getThumbnailContentType()).isEqualTo(UPDATED_THUMBNAIL_CONTENT_TYPE);
+        assertThat(testBlogEntry.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testBlogEntry.getShortDescription()).isEqualTo(UPDATED_SHORT_DESCRIPTION);
+        assertThat(testBlogEntry.getPictures()).isEqualTo(UPDATED_PICTURES);
+        assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(UPDATED_PICTURES_CONTENT_TYPE);
     }
 
     @Test
