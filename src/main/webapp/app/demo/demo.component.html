@@ -81,12 +81,11 @@
                 </div>
             </div>
         </div>
+        <!--
         <div class="row" *ngFor="let blogEntry of blogEntries; let i = index">
-            <div class="col-lg-6 {{getAlignmentFor(i)}}">
+            <div class="col-lg-6 travel-left">
                 <div class="single-travel media  pb-70">
-                    <a href="goodbyezuerich.html">
-                        <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                    </a>
+                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
                         <span>20</span>
                         <p>Dec</p>
@@ -98,6 +97,59 @@
                             <p><span class="lnr lnr-heart"></span> 15 Likes</p>
                             <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngFor="let blogEntry of blogEntries; let i = index">
+            <div class="col-lg-6 travel-right">
+                <div class="single-travel media  pb-70">
+                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <span>20</span>
+                        <p>Dec</p>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="goodbyezuerich.html">Auf Wiedersehen Zürich</a></h4>
+                        <p>{{blogEntry.text}}</p>
+                        <div class="meta-bottom d-flex justify-content-between">
+                            <p><span class="lnr lnr-heart"></span> 15 Likes</p>
+                            <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        -->
+
+        <div class="row">
+            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
+                <div class="single-travel media pb-70" >
+                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <!--
+                        <span>{{blogEntry.dayAdded}}</span>
+                        <p>{{blogEntry.monthAdded}}</p>
+                        -->
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.text}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddBlogEntries">
+                <div class="single-travel media pb-70">
+                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <!--
+                        <span>{{blogEntry.dayAdded}}</span>
+                        <p>{{blogEntry.monthAdded}}</p>
+                        -->
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#">A{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.text}}</p>
                     </div>
                 </div>
             </div>

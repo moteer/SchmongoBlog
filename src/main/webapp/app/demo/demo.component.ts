@@ -23,6 +23,8 @@ export class DemoComponent implements OnInit {
     modalRef: NgbModalRef;
     blog: Blog;
     blogEntries: BlogEntry[] = [{id: "id", title: "title"}];
+    evenBlogEntries: BlogEntry[] = [];
+    oddBlogEntries: BlogEntry[] = [];
 
 
     @Output()
@@ -52,9 +54,21 @@ export class DemoComponent implements OnInit {
         this.blogEntryService.query().subscribe(
             (res: HttpResponse<BlogEntry[]>) => {
                 this.blogEntries = res.body;
+                this.assignEvenAndOddBlogEntries();
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    private assignEvenAndOddBlogEntries() {
+        for (let i = 0; i < this.blogEntries.length; i++) {
+            if (i % 2 == 0) {
+                this.evenBlogEntries.push(this.blogEntries[i]);
+            }
+            else {
+                this.oddBlogEntries.push(this.blogEntries[i]);
+            }
+        }
     }
 
     registerAuthenticationSuccess() {
@@ -79,14 +93,5 @@ export class DemoComponent implements OnInit {
 
     toggleAdmin() {
         this.adminButtonToggled.emit(true);
-    }
-
-    getAlignmentFor(index: number) {
-        console.log("index: " + index);
-        console.log("index % 2 =  " + (index % 2));
-        if (index % 2 == 0) {
-            return "travel-left";
-        }
-        return "travel-right";
     }
 }
