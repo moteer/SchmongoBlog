@@ -23,7 +23,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section class="banner-area relative" id="home" data-parallax="scroll" data-image-src="content/img/header-bg.jpg" *ngIf="isOverview">
+<section class="banner-area relative demopicture" id="home" data-parallax="scroll" data-image-src="" *ngIf="isOverview">
     <div class="overlay-bg overlay"></div>
     <div class="container">
         <div class="row fullscreen">
@@ -62,7 +62,7 @@
                 <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide">
                 <div class="carousel-caption">
                     <h3>{{blogEntry.title}}</h3>
-                    <p>{{blogEntry.text}}</p>
+                    <p>{{blogEntry.shortDescription}}</p>
                 </div>
             </ng-template>
         </ngb-carousel>
@@ -93,7 +93,7 @@
                     </div>
                     <div class="media-body align-self-center">
                         <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
-                        <p>{{blogEntry.text}}</p>
+                        <p>{{blogEntry.shortDescription}}</p>
                     </div>
                 </div>
             </div>
@@ -107,8 +107,8 @@
                         -->
                     </div>
                     <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="1(blogEntry)">{{blogEntry.title}}</a></h4>
-                        <p>{{blogEntry.text}}</p>
+                        <h4 class="mt-0"><a href="#" (click)="(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.shortDescription}}</p>
                     </div>
                 </div>
             </div>
@@ -519,6 +519,7 @@
             </div>
         </div>
     </section>
+</div>
     <!-- End post Area -->
 
 
