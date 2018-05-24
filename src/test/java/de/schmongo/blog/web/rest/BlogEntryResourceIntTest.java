@@ -66,6 +66,9 @@ public class BlogEntryResourceIntTest {
     private static final String DEFAULT_PICTURES_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_PICTURES_CONTENT_TYPE = "image/png";
 
+    private static final String DEFAULT_AUTHOR = "AAAAAAAAAA";
+    private static final String UPDATED_AUTHOR = "BBBBBBBBBB";
+
     @Autowired
     private BlogEntryRepository blogEntryRepository;
 
@@ -110,7 +113,8 @@ public class BlogEntryResourceIntTest {
             .date(DEFAULT_DATE)
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
             .pictures(DEFAULT_PICTURES)
-            .picturesContentType(DEFAULT_PICTURES_CONTENT_TYPE);
+            .picturesContentType(DEFAULT_PICTURES_CONTENT_TYPE)
+            .author(DEFAULT_AUTHOR);
         return blogEntry;
     }
 
@@ -144,6 +148,7 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getShortDescription()).isEqualTo(DEFAULT_SHORT_DESCRIPTION);
         assertThat(testBlogEntry.getPictures()).isEqualTo(DEFAULT_PICTURES);
         assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(DEFAULT_PICTURES_CONTENT_TYPE);
+        assertThat(testBlogEntry.getAuthor()).isEqualTo(DEFAULT_AUTHOR);
     }
 
     @Test
@@ -183,7 +188,8 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].picturesContentType").value(hasItem(DEFAULT_PICTURES_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].pictures").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURES))));
+            .andExpect(jsonPath("$.[*].pictures").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURES))))
+            .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR.toString())));
     }
 
     @Test
@@ -205,7 +211,8 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.picturesContentType").value(DEFAULT_PICTURES_CONTENT_TYPE))
-            .andExpect(jsonPath("$.pictures").value(Base64Utils.encodeToString(DEFAULT_PICTURES)));
+            .andExpect(jsonPath("$.pictures").value(Base64Utils.encodeToString(DEFAULT_PICTURES)))
+            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR.toString()));
     }
 
     @Test
@@ -233,7 +240,8 @@ public class BlogEntryResourceIntTest {
             .date(UPDATED_DATE)
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .pictures(UPDATED_PICTURES)
-            .picturesContentType(UPDATED_PICTURES_CONTENT_TYPE);
+            .picturesContentType(UPDATED_PICTURES_CONTENT_TYPE)
+            .author(UPDATED_AUTHOR);
 
         restBlogEntryMockMvc.perform(put("/api/blog-entries")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -254,6 +262,7 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getShortDescription()).isEqualTo(UPDATED_SHORT_DESCRIPTION);
         assertThat(testBlogEntry.getPictures()).isEqualTo(UPDATED_PICTURES);
         assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(UPDATED_PICTURES_CONTENT_TYPE);
+        assertThat(testBlogEntry.getAuthor()).isEqualTo(UPDATED_AUTHOR);
     }
 
     @Test

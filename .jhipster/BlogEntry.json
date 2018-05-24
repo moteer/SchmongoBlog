@@ -34,6 +34,10 @@
             "fieldName": "pictures",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "author",
+            "fieldType": "String"
         }
     ],
     "dto": "no",

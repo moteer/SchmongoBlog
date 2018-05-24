@@ -49,6 +49,9 @@ public class BlogEntry implements Serializable {
     @Field("pictures_content_type")
     private String picturesContentType;
 
+    @Field("author")
+    private String author;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
         return id;
@@ -187,6 +190,19 @@ public class BlogEntry implements Serializable {
     public void setPicturesContentType(String picturesContentType) {
         this.picturesContentType = picturesContentType;
     }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public BlogEntry author(String author) {
+        this.author = author;
+        return this;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -223,6 +239,7 @@ public class BlogEntry implements Serializable {
             ", shortDescription='" + getShortDescription() + "'" +
             ", pictures='" + getPictures() + "'" +
             ", picturesContentType='" + getPicturesContentType() + "'" +
+            ", author='" + getAuthor() + "'" +
             "}";
     }
 }

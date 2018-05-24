@@ -26,6 +26,9 @@ export class DemoComponent implements OnInit {
     evenBlogEntries: BlogEntry[] = [];
     oddBlogEntries: BlogEntry[] = [];
 
+    currentBlogEntry: BlogEntry;
+
+    isOverview = true;
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -91,5 +94,10 @@ export class DemoComponent implements OnInit {
 
     toggleAdmin() {
         this.adminButtonToggled.emit(true);
+    }
+
+    showBlogEntry(blogEntry: BlogEntry) {
+        this.isOverview = false;
+        this.currentBlogEntry = blogEntry;
     }
 }

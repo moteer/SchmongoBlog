@@ -24,6 +24,7 @@
             <th><span>Date</span></th>
             <th><span>Short Description</span></th>
             <th><span>Pictures</span></th>
+            <th><span>Author</span></th>
             <th></th>
             </tr>
             </thead>
@@ -52,6 +53,7 @@
                     </a>
                     <span *ngIf="blogEntry.pictures">{{blogEntry.picturesContentType}}, {{byteSize(blogEntry.pictures)}}</span>
                 </td>
+                <td>{{blogEntry.author}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"
