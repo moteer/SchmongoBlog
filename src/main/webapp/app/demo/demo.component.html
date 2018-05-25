@@ -49,6 +49,7 @@
 <!-- Start category Area -->
 <section class="category-area section-gap" id="news" *ngIf="isOverview">
     <div class="container">
+
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
@@ -57,9 +58,10 @@
                 </div>
             </div>
         </div>
+
         <ngb-carousel>
             <ng-template *ngFor="let blogEntry of blogEntries" ngbSlide>
-                <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide">
+                <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide" class="carousel-picture">
                 <div class="carousel-caption">
                     <h3>{{blogEntry.title}}</h3>
                     <p>{{blogEntry.shortDescription}}</p>
@@ -84,7 +86,7 @@
         <div class="row">
             <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
                 <div class="single-travel media pb-70" >
-                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
                         <!--
                         <span>{{blogEntry.dayAdded}}</span>
@@ -99,7 +101,7 @@
             </div>
             <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddBlogEntries">
                 <div class="single-travel media pb-70">
-                    <img class="img-fluid d-flex  mr-3" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
                         <!--
                         <span>{{blogEntry.dayAdded}}</span>
