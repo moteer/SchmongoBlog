@@ -23,7 +23,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section class="banner-area relative demopicture" id="home" data-parallax="scroll" data-image-src="" *ngIf="isOverview">
+<section class="banner-area relative demopicture" parallax sid="home" *ngIf="isOverview">
     <div class="overlay-bg overlay"></div>
     <div class="container">
         <div class="row fullscreen">
@@ -53,7 +53,7 @@
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <h1 class="mb-10">Hier findest du die letzten Einträge aus allen Kategorien</h1>
-                    <p>Anzahl Blogeinträge {{blogEntries.length}} </p>
+                    <p></p>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
         </ngb-carousel>
     </div>
 </section>
-			<!-- End category Area -->
+<!-- End category Area -->
 
 <!-- Start travel Area -->
 <section class="travel-area section-gap" id="travel" *ngIf="isOverview">

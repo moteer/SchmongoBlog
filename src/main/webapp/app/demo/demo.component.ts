@@ -41,10 +41,6 @@ export class DemoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.principal.identity().then((account) => {
-            this.account = account;
-        });
-        this.registerAuthenticationSuccess();
         this.loadBlog();
         this.loadBlogEntries();
     }
@@ -72,20 +68,9 @@ export class DemoComponent implements OnInit {
         }
     }
 
-    registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', (message) => {
-            this.principal.identity().then((account) => {
-                this.account = account;
-            });
-        });
-    }
 
     createImageUrlFor(blogEntry: BlogEntry): string {
         return 'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture;
-    }
-
-    login() {
-        this.modalRef = this.loginModalService.open();
     }
 
     private onError(error) {
