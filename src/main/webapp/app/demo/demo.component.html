@@ -9,12 +9,12 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#news">Aktuelles</a></li>
-                    <li><a href="#travel">Reiseleben</a></li>
-                    <li><a href="#cooking">Wie alles begann</a></li>
-                    <li><a href="#travel">Inspiration & Gedanken</a></li>
-                    <li><a href="#us">Wer wir sind</a></li>
+                    <li><a href="#home" (click)="showHomePage()">Home</a></li>
+                    <li><a href="#news" (click)="showHomePage()">Aktuelles</a></li>
+                    <li><a href="#travel" (click)="showHomePage()">Reiseleben</a></li>
+                    <li><a href="#cooking" (click)="showHomePage()">Wie alles begann</a></li>
+                    <li><a href="#travel" (click)="showHomePage()">Inspiration & Gedanken</a></li>
+                    <li><a href="#us" (click)="showHomePage()">Wer wir sind</a></li>
                 </ul>
             </div>
         </div>
@@ -23,7 +23,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section class="banner-area relative demopicture" parallax sid="home" *ngIf="isOverview">
+<section class="banner-area relative demopicture" parallax id="home" *ngIf="isOverview">
     <div class="overlay-bg overlay"></div>
     <div class="container">
         <div class="row fullscreen">
@@ -45,7 +45,6 @@
 </section>
 <!-- End banner Area -->
 
-
 <!-- Start category Area -->
 <section class="category-area section-gap" id="news" *ngIf="isOverview">
     <div class="container">
@@ -62,10 +61,12 @@
         <ngb-carousel>
             <ng-template *ngFor="let blogEntry of blogEntries" ngbSlide>
                 <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide" class="carousel-picture">
-                <div class="carousel-caption">
-                    <h3>{{blogEntry.title}}</h3>
-                    <p>{{blogEntry.shortDescription}}</p>
-                </div>
+                <a href="#" (click)="showBlogEntry(blogEntry)">
+                    <div class="carousel-caption">
+                        <h3>{{blogEntry.title}}</h3>
+                        <p>{{blogEntry.shortDescription}}</p>
+                    </div>
+                </a>
             </ng-template>
         </ngb-carousel>
     </div>
@@ -88,10 +89,8 @@
                 <div class="single-travel media pb-70" >
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
-                        <!--
-                        <span>{{blogEntry.dayAdded}}</span>
-                        <p>{{blogEntry.monthAdded}}</p>
-                        -->
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
                     </div>
                     <div class="media-body align-self-center">
                         <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
@@ -103,13 +102,11 @@
                 <div class="single-travel media pb-70">
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
-                        <!--
-                        <span>{{blogEntry.dayAdded}}</span>
-                        <p>{{blogEntry.monthAdded}}</p>
-                        -->
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
                     </div>
                     <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
                         <p>{{blogEntry.shortDescription}}</p>
                     </div>
                 </div>

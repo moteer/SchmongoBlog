@@ -85,4 +85,8 @@ export class DemoComponent implements OnInit {
         this.isOverview = false;
         this.currentBlogEntry = blogEntry;
     }
+
+    showHomePage() {
+        this.isOverview = true;
+    }
 }
