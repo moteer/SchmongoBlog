@@ -1,23 +1,20 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ParallaxModule, ParallaxConfig} from 'ngx-parallax';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { SchmongoBlogSharedModule } from '../shared';
+import {SchmongoBlogSharedModule} from '../shared';
 
-import { DEMO_ROUTE, DemoComponent } from './';
+import {DEMO_ROUTE, DemoComponent} from './';
 
 @NgModule({
     imports: [
-        ParallaxModule,
         SchmongoBlogSharedModule,
-        RouterModule.forChild([ DEMO_ROUTE ])
+        RouterModule.forChild([DEMO_ROUTE])
     ],
     declarations: [
     ],
-    entryComponents: [
-    ],
-    providers: [
-    ],
+    entryComponents: [],
+    providers: [],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SchmongoBlogDemoModule { }
+export class SchmongoBlogDemoModule {
+}

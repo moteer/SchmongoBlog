@@ -9,12 +9,14 @@ import {Account, LoginModalService, Principal} from '../shared';
 import {BlogEntry} from '../entities/blog-entry';
 import {Blog} from '../entities/blog';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { ParallaxConfig } from "ng2-parallax/system";
 
 @Component({
     selector: 'jhi-demo',
     templateUrl: './demo.component.html',
     styleUrls: [
         'demo.scss'
+    ], inputs: [
     ]
 
 })
