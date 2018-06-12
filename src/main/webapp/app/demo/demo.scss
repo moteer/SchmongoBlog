@@ -2,14 +2,35 @@
 /* ==========================================================================
 Main page styles
 ========================================================================== */
-*[parallax] {
-    width: 100%;
-    height: 100%;
-    background-size: 100%;
+
+.home-bg {
+    background-image: url('../../content/img/header-nz2.jpg');
+    //background-repeat: no-repeat;
+    //background-position: center top;
+    //background: no-repeat center top;
+    background-size: cover;
+    //background-size: 100% 100%;
 }
 
-#home {
-    background-image: url('../../content/img/header-bg.jpg');
+.resi-yoga-inspiration {
+    background-image: url('../../content/img/resi-yoga-inspiration.jpg');
+    height: 200px;
+    background-repeat: no-repeat;
+}
+
+.wer-wir-sind {
+    background-image: url('../../content/img/erik-und-resi.jpg');
+    height: 200px;
+    background-repeat: no-repeat;
+}
+
+.wer-wir-sind:hover {
+    opacity: 0.5;
+}
+
+.resi-und-erik {
+    background-image: url('../../content/img/resi-yoga-inspiration.jpg');
+    background-size: cover;
 }
 
 .carousel-picture {
@@ -35,10 +56,3 @@ only screen and (                min-resolution: 2dppx) {
         background-size: contain;
     }
 }
-
-@media (min-width: 400px) {
-    .carousel-container {
-        max-width: 800px;
-    }
-}
-

@@ -10,11 +10,12 @@
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li><a href="#home" (click)="showHomePage()">Home</a></li>
-                    <li><a href="#news" (click)="showHomePage()">Aktuelles</a></li>
-                    <li><a href="#travel" (click)="showHomePage()">Reiseleben</a></li>
-                    <li><a href="#cooking" (click)="showHomePage()">Wie alles begann</a></li>
-                    <li><a href="#travel" (click)="showHomePage()">Inspiration & Gedanken</a></li>
+                    <!--<li><a href="#news" (click)="showHomePage()">Aktuelles</a></li>-->
+                    <li><a href="#travel" (click)="showHomePage()">Reiseleben Hier &#38; Jetzt</a></li>
+                    <li><a href="#early-travel" (click)="showHomePage()">Unsere bisherigen Reisen</a></li>
+                    <li><a href="#inspiration" (click)="showHomePage()">Inspiration &#38; Gedanken</a></li>
                     <li><a href="#us" (click)="showHomePage()">Wer wir sind</a></li>
+                    <li><a href="#contact" (click)="showHomePage()">Kontakt</a></li>
                 </ul>
             </div>
         </div>
@@ -23,10 +24,9 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section parallax id="home" *ngIf="isOverview">
-    <div class="overlay-bg overlay"></div>
+<section id="home" class="home-bg" *ngIf="isOverview">
     <div class="container">
-        <div class="row fullscreen">
+        <div class="row justify-content-center">
             <div class="banner-content d-flex align-items-top col-lg-12 col-md-12">
                 <h2>
                     <font color="#ffffff">Reiseblog</font>
@@ -45,42 +45,19 @@
 </section>
 <!-- End banner Area -->
 
-<!-- Start category Area -->
-<section class="category-area section-gap" id="news" *ngIf="isOverview">
-    <div class="container carousel-container">
-
-        <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-70 col-lg-8">
-                <div class="title text-center">
-                    <h1 class="mb-10">Hier findest du die letzten Einträge aus allen Kategorien</h1>
-                    <p></p>
-                </div>
-            </div>
-        </div>
-
-        <ngb-carousel>
-            <ng-template *ngFor="let blogEntry of blogEntries" ngbSlide>
-                <img [src]="createImageUrlFor(blogEntry)" alt="Random first slide" class="carousel-picture">
-                <a href="#" (click)="showBlogEntry(blogEntry)">
-                    <div class="carousel-caption">
-                        <h3>{{blogEntry.title}}</h3>
-                        <p>{{blogEntry.shortDescription}}</p>
-                    </div>
-                </a>
-            </ng-template>
-        </ngb-carousel>
-    </div>
-</section>
-<!-- End category Area -->
-
 <!-- Start travel Area -->
 <section class="travel-area section-gap" id="travel" *ngIf="isOverview">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">Unsere Reise sektion</h1>
-                    <p>Alles was sich ums Reisen dreht findest du hier.</p>
+                    <ul class="navbar-nav">
+                        <li><a href="#home">Reiseleben Hier &#38; Jetzt</a></li>
+                    </ul>
+                    <h2 class="mb-10">Zu Fuss von Zürich nach Italien</h2>
+                    <p>Nun haben wir über ein ganzes Jahr in Zürich gelebt und wirklich wenig von der Schweiz gesehen.
+                        Das soll sich nun ändern! Wie könnte man ein Land besser kennenlernen als es zu Fuss zu bereisen?
+                    Genau das haben wir uns zu unserem ersten Ziel gemacht: Einmal durch die Schweiz bis nach Italien wandern! Und los!
                 </div>
             </div>
         </div>
@@ -116,62 +93,147 @@
 </section>
 <!-- End travel Area -->
 
-<!-- Start fashion Area -->
-<section class="fashion-area section-gap" id="cooking" *ngIf="isOverview">
+<!-- Start alte Reiseberichte Area -->
+<section class="fashion-area section-gap" id="early-travel" *ngIf="isOverview">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">Wie alles begann</h1>
-                    <p>Das Reisen fing bei uns bereits 2011 an. Seit dem sind wir immer wieder unterwegs...</p>
+                    <ul class="navbar-nav">
+                        <li><a href="#early-travel">Unsere bisherigen Reisen</a></li>
+                    </ul>
+                    <h1 class="mb-10">Ein bunter Mix von Reiseberichten</h1>
+                    <p>Ein bunter Mix von Reiseberichten
+                        Angefangen von unserem Kennlernland Neuseeland, über unsere ersten gemeinsamen Reiseerfahrungen in Südostasien, Stories über unser Moped Knut dass uns über mehrere Grenzen gebracht hat, vom Surfen, Yoga, der Transsibirischen Eisenbahn, Kängurus und Aborigines in Australien…& die Welt.
+                        Lässt sich gut lesen als Klobroschüre, während der Bahnfahrt oder zum einander Vorlesen.
+                        Diese Kategorie wird nach und nach noch wachsen. Gerne wollen wir nachträglich aus unseren Notizen noch all unsere Erlebnisse zu Papier bringen.
+                        Es ist eine schöne Erinnerung die es uns immer wieder möglich macht in alten Zeiten zu schwelgen und zurück zu blicken - auch in 10,20… Jahren noch.
+                        Viel Spass beim Lesen und Schmunzeln!
+                        Solltet ihr einmal in die genannten Länder reisen, stehen wir euch sehr gern für Tipps und Anregungen zur Verfügung :-)!
+                    </p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 single-fashion">
-                <img class="img-fluid" src="" alt="">
-                <p class="date">10 Jan 2018</p>
-                <h4><a href="#">Resis Prokka </a></h4>
-                <p>
-                    Mit Buchweizen und Dinkel what weiss ich ....
-                </p>
-                <div class="meta-bottom d-flex justify-content-between">
-                    <p><span class="lnr lnr-heart"></span> 15 Likes</p>
-                    <p><span class="lnr lnr-bubble"></span> 02 Comments</p>
+            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
+                <div class="single-travel media pb-70" >
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.shortDescription}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddBlogEntries">
+                <div class="single-travel media pb-70">
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.shortDescription}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+<!-- End alte Reiseberichte Area -->
+
+<!-- Start inspiration Area -->
+<section class="travel-area section-gap" id="inspiration" *ngIf="isOverview">
+    <div class="container">
+        <div class="row d-flex justify-content-center ">
+            <div class="menu-content pb-70 col-lg-8 resi-yoga-inspiration">
+                <div class="title text-center">
+                    <ul class="navbar-nav">
+                        <li><a href="#inspiration">Inspirationen &#38; Gedanken</a></li>
+                    </ul>
+                    <h1 class="mb-10">Gedankenwelt</h1>
+                    <p>Etwas Geduld noch, hier entsteht bald etwas ...</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- End fashion Area -->
+<!-- End alte inspiration Area -->
 
 <!-- Start Resi und Erik Area -->
-<section class="team-area section-gap" id="us" *ngIf="isOverview">
+<section class="fashion-area section-gap" id="us" *ngIf="isOverview">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">Resi und Erik</h1>
-                    <p>die Veganen Weltenbummler</p>
+                    <ul class="navbar-nav">
+                        <li><a href="#us">Wer wir sind</a></li>
+                    </ul>
+                    <h1 class="mb-30">Resi und Erik</h1>
+                    <p>Hier findet Ihr unseren Steckbrief und eine kleine Geschichte, die davon erzählt, wie das eigentlich alles angefangen hat mit uns und dem Reisen.</p>
                 </div>
             </div>
         </div>
         <div class="row justify-content-center d-flex align-items-center">
-            <div class="col-lg-6 team-left">
-                <p>
-                    Hier stellen wir uns mal vor und schreiben, was wir so machen.
-                </p>
-            </div>
-            <div class="col-lg-6 team-right d-flex justify-content-center">
+            <div class="section-top-border">
                 <div class="row">
-                    <div class="single-team">
-                        <div class="thumb">
-                            <img class="img-fluid" src="" alt="">
-                            <div class="align-items-center justify-content-center d-flex">
+                    <div class="col-md-4">
+                        <div class="single-defination">
+                            <h4 class="mb-20">Resis</h4>
+                            <h5>Wünsche & Ziele während der Reise:</h5>
+                            <br/>
+                            <ul>
+                                <li>- Tiefe Glückseligkeit, Zufriedenheit und Achtsamkeit verspüren</li>
+                                <li>- den Mut neue Dinge auszuprobieren & zu wagen und sich Ängsten zu stellen (Vielleicht sogar der Katzenangst :-) )</li>
+                                <li>- viel Zeit für Yoga, Meditation und Spiritualität </li>
+                                <li>- eine Bestimmung finden die mir Spass bereitet und mich erfüllt </li>
+                            </ul>
+                            <br/>
+                            <h5> Reisezielwünsche ganz oben auf der Liste:</h5>
+                            <br/>
+                            <ul>
+                                <li>- Indien</li>
+                                <li>- Marokko</li>
+                                <li>- Italien</li>
+                                <li>- Mexiko</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-travel media pb-70" >
+                            <div class="img-fluid d-flex mr-3 thumbnail-picture wer-wir-sind"></div>
+                            <div class="media-body align-self-center">
+                                <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">hier geht es zu unseren kleinen Liebesgeschichte</a></h4>
                             </div>
                         </div>
-                        <div class="meta-text mt-30 text-center">
-                            <h4>Resi und Erik</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="single-defination">
+                            <h4 class="mb-20">Eriks</h4>
+                            <h5>Wünsche & Ziele während der Reise:</h5>
+                            <br/>
+                            <ul>
+                                <li>- richtig gut surfen zu können</li>
+                                <li>- die Leichtigkeit des Lebens wiederfinden</li>
+                                <li>- Umsetzbare Vision für die Zukunft finden</li>
+                                <li>- mindestens 1 was unerwartetes Neues kennenlernen & für mich entdecken ( Sprache, Sportart, Musik...irgendwas)</li>
+                            </ul>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <h5> Reisezielwünsche ganz oben auf der Liste:</h5>
+                            <br/>
+                            <ul>
+                                <li>- Nicaragua</li>
+                                <li>- Borneo</li>
+                                <li>- Marokko</li>
+                                <li>- Ecuador</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -182,7 +244,7 @@
 <!-- End team Area -->
 
 
-<!-- Start post Area -->
+<!-- Start blog entry Area -->
 <div class="post-wrapper pt-100" *ngIf="!isOverview">
     <!-- Start post Area -->
     <section class="post-area">
@@ -202,17 +264,16 @@
                                         <h3>{{currentBlogEntry.date}}</h3>
                                     </div>
                                     <div class="user-img">
-                                        <img src="" alt="">
+                                        <!--<img src="" alt="">-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="tags">
                             <ul>
-                                <li><a href="#">travel</a></li>
-                                <li><a href="#">life</a></li>
-                                <li><a href="#">italy</a></li>
-                                <li><a href="#">australia</a></li>
+                                <li><a href="#">Zürich</a></li>
+                                <li><a href="#">Leben</a></li>
+                                <li><a href="#">Reisen</a></li>
                             </ul>
                         </div>
                         <div class="single-post-content">
@@ -221,310 +282,70 @@
                         <div class="bottom-wrapper">
                             <div class="row">
                                 <div class="col-lg-4 single-b-wrap col-md-12">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    lily and 4 people like this
                                 </div>
                                 <div class="col-lg-4 single-b-wrap col-md-12">
-                                    <i class="fa fa-comment-o" aria-hidden="true"></i> 06 comments
                                 </div>
                                 <div class="col-lg-4 single-b-wrap col-md-12">
-                                    <ul class="social-icons">
-                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
-                                    </ul>
+
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Start nav Area -->
-                        <section class="nav-area pt-50 pb-100">
-                            <div class="container">
-                                <div class="row justify-content-between">
-                                    <div class="col-sm-6 nav-left justify-content-start d-flex">
-                                        <div class="thumb">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="details">
-                                            <p>Prev Post</p>
-                                            <h4 class="text-uppercase"><a href="#">A Discount Toner</a></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 nav-right justify-content-end d-flex">
-                                        <div class="details">
-                                            <p>Prev Post</p>
-                                            <h4 class="text-uppercase"><a href="#">A Discount Toner</a></h4>
-                                        </div>
-                                        <div class="thumb">
-                                            <img src="" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- End nav Area -->
-
-                        <!-- Start comment-sec Area -->
-                        <section class="comment-sec-area pt-80 pb-80">
-                            <div class="container">
-                                <div class="row flex-column">
-                                    <h5 class="text-uppercase pb-80">05 Comments</h5>
-                                    <br>
-                                    <div class="comment-list">
-                                        <div class="single-comment justify-content-between d-flex">
-                                            <div class="user justify-content-between d-flex">
-                                                <div class="thumb">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <div class="desc">
-                                                    <h5><a href="#">Emilly Blunt</a></h5>
-                                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    <p class="comment">
-                                                        Never say goodbye till the end comes!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-list left-padding">
-                                        <div class="single-comment justify-content-between d-flex">
-                                            <div class="user justify-content-between d-flex">
-                                                <div class="thumb">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <div class="desc">
-                                                    <h5><a href="#">Emilly Blunt</a></h5>
-                                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    <p class="comment">
-                                                        Never say goodbye till the end comes!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-list left-padding">
-                                        <div class="single-comment justify-content-between d-flex">
-                                            <div class="user justify-content-between d-flex">
-                                                <div class="thumb">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <div class="desc">
-                                                    <h5><a href="#">Emilly Blunt</a></h5>
-                                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    <p class="comment">
-                                                        Never say goodbye till the end comes!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-list">
-                                        <div class="single-comment justify-content-between d-flex">
-                                            <div class="user justify-content-between d-flex">
-                                                <div class="thumb">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <div class="desc">
-                                                    <h5><a href="#">Emilly Blunt</a></h5>
-                                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    <p class="comment">
-                                                        Never say goodbye till the end comes!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment-list">
-                                        <div class="single-comment justify-content-between d-flex">
-                                            <div class="user justify-content-between d-flex">
-                                                <div class="thumb">
-                                                    <img src="" alt="">
-                                                </div>
-                                                <div class="desc">
-                                                    <h5><a href="#">Emilly Blunt</a></h5>
-                                                    <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    <p class="comment">
-                                                        Never say goodbye till the end comes!
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="reply-btn">
-                                                <a href="" class="btn-reply text-uppercase">reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- End comment-sec Area -->
-
-                        <!-- Start commentform Area -->
-                        <section class="commentform-area  pb-120 pt-80 mb-100">
-                            <div class="container">
-                                <h5 class="text-uppercas pb-50">Leave a Reply</h5>
-                                <div class="row flex-row d-flex">
-                                    <div class="col-lg-6">
-                                        <input name="name" placeholder="Enter your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" class="common-input mb-20 form-control" required="" type="text">
-                                        <input name="email" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your email'" class="common-input mb-20 form-control" required="" type="email">
-                                        <input name="Subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your Subject'" class="common-input mb-20 form-control" required="" type="text">
-
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <textarea class="form-control mb-10" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
-                                        <a class="primary-btn mt-20" href="#">Comment</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- End commentform Area -->
-
                     </div>
                 </div>
-                <div class="col-lg-4 sidebar-area ">
-                    <div class="single_widget search_widget">
-                        <div id="imaginary_container">
-                            <div class="input-group stylish-input-group">
-                                <input type="text" class="form-control"  placeholder="Search" >
-                                <span class="input-group-addon">
-                                        <button type="submit">
-                                            <span class="lnr lnr-magnifier"></span>
-                                        </button>
-                                    </span>
-                            </div>
-                        </div>
+            </div>
+            <div class="section-top-border">
+                <h3>Image Gallery</h3>
+                <div class="row gallery-item">
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/1.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/1.jpg);"></div></a>
                     </div>
-
-                    <div class="single_widget about_widget">
-                        <img src="" alt="">
-                        <h2 class="text-uppercase">Adele Gonzalez</h2>
-                        <p>
-                            MCSE boot camps have its supporters and
-                            its detractors. Some people do not understand why you should have to spend money
-                        </p>
-                        <div class="social-link">
-                            <a href="#"><button class="btn"><i class="fa fa-facebook" aria-hidden="true"></i> Like</button></a>
-                            <a href="#"><button class="btn"><i class="fa fa-twitter" aria-hidden="true"></i> follow</button></a>
-                        </div>
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/2.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/2.jpg);"></div></a>
                     </div>
-                    <div class="single_widget cat_widget">
-                        <h4 class="text-uppercase pb-20">post categories</h4>
-                        <ul>
-                            <li>
-                                <a href="#">Technology <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Lifestyle <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Fashion <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Art <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Food <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Architecture <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Adventure <span>37</span></a>
-                            </li>
-                        </ul>
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/3.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/3.jpg);"></div></a>
                     </div>
-
-                    <div class="single_widget recent_widget">
-                        <h4 class="text-uppercase pb-20">Recent Posts</h4>
-                        <div class="active-recent-carusel">
-                            <div class="item">
-                                <img src="" alt="">
-                                <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                    For Everyone</p>
-                                <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                            </div>
-                            <div class="item">
-                                <img src="" alt="">
-                                <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                    For Everyone</p>
-                                <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                            </div>
-                            <div class="item">
-                                <img src="" alt="">
-                                <p class="mt-20 title text-uppercase">Home Audio Recording <br>
-                                    For Everyone</p>
-                                <p>02 Hours ago <span> <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                    06 <i class="fa fa-comment-o" aria-hidden="true"></i>02</span></p>
-                            </div>
-                        </div>
+                    <div class="col-md-6">
+                        <a href="../../content/img/galleries/zuerich/4.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/4.jpg);"></div></a>
                     </div>
-
-
-                    <div class="single_widget cat_widget">
-                        <h4 class="text-uppercase pb-20">post archive</h4>
-                        <ul>
-                            <li>
-                                <a href="#">Dec'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Nov'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Oct'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Sept'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Aug'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Jul'17 <span>37</span></a>
-                            </li>
-                            <li>
-                                <a href="#">Jun'17 <span>37</span></a>
-                            </li>
-                        </ul>
+                    <div class="col-md-6">
+                        <a href="../../content/img/galleries/zuerich/5.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/5.jpg);"></div></a>
                     </div>
-                    <div class="single_widget tag_widget">
-                        <h4 class="text-uppercase pb-20">Tag Clouds</h4>
-                        <ul>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Art</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Technology</a></li>
-                        </ul>
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/6.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/6.jpg);"></div></a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/7.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/7.jpg);"></div></a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="../../content/img/galleries/zuerich/8.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/8.jpg);"></div></a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </div>
-    <!-- End post Area -->
+<!-- End blog entry Area -->
 
 
-    <!-- start footer Area -->
-<footer class="footer-area section-gap">
+<!-- start footer Area -->
+<footer class="footer-area section-gap" id="contact">
     <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-12">
+                <div class="single-footer-widget">
+                    <h6>Kontakt</h6>
+                    <p>
+                        Für Feedback, Fragen oder Kontakt erreicht Ihr uns unter:
+                        <br/>
+                        <a href="mailto:erik@undlos.blog" target="_top">erik@undlos.blog</a>
+                        <br/>
+                        oder
+                        <a href="mailto:resi@undlos.blog" target="_top">resi@undlos.blog</a>
+                    </p>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-3  col-md-12">
                 <button (click)="toggleAdmin()" id="bt">
@@ -542,10 +363,7 @@
             <p class="col-lg-8 col-sm-12 footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="col-lg-4 col-sm-12 footer-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-behance"></i></a>
+
             </div>
         </div>
     </div>
