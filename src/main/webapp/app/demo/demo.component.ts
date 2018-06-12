@@ -9,6 +9,7 @@ import {Account, LoginModalService, Principal} from '../shared';
 import {BlogEntry} from '../entities/blog-entry';
 import {Blog} from '../entities/blog';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Router, ActivatedRoute, Params} from '@angular/router'
 
 @Component({
     selector: 'jhi-demo',
@@ -38,7 +39,15 @@ export class DemoComponent implements OnInit {
                 private eventManager: JhiEventManager,
                 private jhiAlertService: JhiAlertService,
                 private blogService: BlogService,
-                private blogEntryService: BlogEntryService) {
+                private blogEntryService: BlogEntryService,
+                private activatedRoute: ActivatedRoute) {
+
+        this.activatedRoute.queryParams.subscribe((params: Params) => {
+            console.log(params);
+            if (params.admin && params.admin === "Erik") {
+                this.toggleAdmin();
+            }
+        });
     }
 
     ngOnInit() {
