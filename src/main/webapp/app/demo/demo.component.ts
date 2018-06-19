@@ -9,7 +9,10 @@ import {Account, LoginModalService, Principal} from '../shared';
 import {BlogEntry} from '../entities/blog-entry';
 import {Blog} from '../entities/blog';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {Router, ActivatedRoute, Params} from '@angular/router'
+import {ActivatedRoute, Params} from '@angular/router'
+import {DomSanitizer, SafeValue} from "@angular/platform-browser";
+import {SafeHtml} from "@angular/platform-browser/src/security/dom_sanitization_service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'jhi-demo',
@@ -29,10 +32,15 @@ export class DemoComponent implements OnInit {
     oddBlogEntries: BlogEntry[] = [];
 
     currentBlogEntry: BlogEntry;
+    currentBlogEntryText: SafeHtml;
+    currentImageGalleryUrls: any;
+    currentBlogEntryGalleryUrls: SafeValue[] = [];
 
     isOverview = true;
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+
 
     constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
@@ -40,7 +48,10 @@ export class DemoComponent implements OnInit {
                 private jhiAlertService: JhiAlertService,
                 private blogService: BlogService,
                 private blogEntryService: BlogEntryService,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private domSanitizer: DomSanitizer,
+                private http: HttpClient
+    ) {
 
         this.activatedRoute.queryParams.subscribe((params: Params) => {
             console.log(params);
@@ -51,13 +62,14 @@ export class DemoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadBlog();
         this.loadBlogEntries();
+        //Todo: add image gallery functionality
+        //this.loadImageUrls();
     }
 
-    private loadBlog() {
-    }
-
+    /**
+     * Todo: extract to service or resource
+     */
     private loadBlogEntries() {
         this.blogEntryService.query().subscribe(
             (res: HttpResponse<BlogEntry[]>) => {
@@ -66,6 +78,21 @@ export class DemoComponent implements OnInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
+    }
+
+    /**
+     * Todo: extract to service or resource
+     */
+    private loadImageUrls() {
+        this.http.get<string[]>('api/imageurls', { params: {}, observe: 'response' })
+            .subscribe(
+                data => {
+                    console.log(data.body);
+                    this.currentImageGalleryUrls = data.body;
+                    console.log(data);
+                },
+                err => console.log(err)
+            );
     }
 
     private assignEvenAndOddBlogEntries() {
@@ -94,9 +121,20 @@ export class DemoComponent implements OnInit {
     showBlogEntry(blogEntry: BlogEntry) {
         this.isOverview = false;
         this.currentBlogEntry = blogEntry;
+        this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text)
+        this.currentImageGalleryUrls.zuerich.forEach(url => this.currentBlogEntryGalleryUrls.push(this.trustUrl(url)));
+
+        console.log(this.currentBlogEntryGalleryUrls);
     }
 
     showHomePage() {
         this.isOverview = true;
+    }
+
+    trustHtml(text: string) {
+        return this.domSanitizer.bypassSecurityTrustHtml(text);
+    }
+    trustUrl(url: string) {
+        return this.domSanitizer.bypassSecurityTrustUrl(url)
     }
 }

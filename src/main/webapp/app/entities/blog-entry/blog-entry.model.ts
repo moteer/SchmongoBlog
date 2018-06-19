@@ -14,6 +14,7 @@ export class BlogEntry implements BaseEntity {
         public picturesContentType?: string,
         public pictures?: any,
         public author?: string,
+        public cloudDirectory?: string,
     ) {
     }
 }

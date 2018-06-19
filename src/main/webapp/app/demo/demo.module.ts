@@ -4,11 +4,13 @@ import {RouterModule} from '@angular/router';
 import {SchmongoBlogSharedModule} from '../shared';
 
 import {DEMO_ROUTE, DemoComponent} from './';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
     imports: [
         SchmongoBlogSharedModule,
-        RouterModule.forChild([DEMO_ROUTE])
+        RouterModule.forChild([DEMO_ROUTE]),
+        HttpClientModule
     ],
     declarations: [
     ],

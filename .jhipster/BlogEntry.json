@@ -38,6 +38,10 @@
         {
             "fieldName": "author",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "cloudDirectory",
+            "fieldType": "String"
         }
     ],
     "dto": "no",

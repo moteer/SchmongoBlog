@@ -69,6 +69,9 @@ public class BlogEntryResourceIntTest {
     private static final String DEFAULT_AUTHOR = "AAAAAAAAAA";
     private static final String UPDATED_AUTHOR = "BBBBBBBBBB";
 
+    private static final String DEFAULT_CLOUD_DIRECTORY = "AAAAAAAAAA";
+    private static final String UPDATED_CLOUD_DIRECTORY = "BBBBBBBBBB";
+
     @Autowired
     private BlogEntryRepository blogEntryRepository;
 
@@ -114,7 +117,8 @@ public class BlogEntryResourceIntTest {
             .shortDescription(DEFAULT_SHORT_DESCRIPTION)
             .pictures(DEFAULT_PICTURES)
             .picturesContentType(DEFAULT_PICTURES_CONTENT_TYPE)
-            .author(DEFAULT_AUTHOR);
+            .author(DEFAULT_AUTHOR)
+            .cloudDirectory(DEFAULT_CLOUD_DIRECTORY);
         return blogEntry;
     }
 
@@ -149,6 +153,7 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getPictures()).isEqualTo(DEFAULT_PICTURES);
         assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(DEFAULT_PICTURES_CONTENT_TYPE);
         assertThat(testBlogEntry.getAuthor()).isEqualTo(DEFAULT_AUTHOR);
+        assertThat(testBlogEntry.getCloudDirectory()).isEqualTo(DEFAULT_CLOUD_DIRECTORY);
     }
 
     @Test
@@ -189,7 +194,8 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.[*].shortDescription").value(hasItem(DEFAULT_SHORT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].picturesContentType").value(hasItem(DEFAULT_PICTURES_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].pictures").value(hasItem(Base64Utils.encodeToString(DEFAULT_PICTURES))))
-            .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR.toString())));
+            .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR.toString())))
+            .andExpect(jsonPath("$.[*].cloudDirectory").value(hasItem(DEFAULT_CLOUD_DIRECTORY.toString())));
     }
 
     @Test
@@ -212,7 +218,8 @@ public class BlogEntryResourceIntTest {
             .andExpect(jsonPath("$.shortDescription").value(DEFAULT_SHORT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.picturesContentType").value(DEFAULT_PICTURES_CONTENT_TYPE))
             .andExpect(jsonPath("$.pictures").value(Base64Utils.encodeToString(DEFAULT_PICTURES)))
-            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR.toString()));
+            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR.toString()))
+            .andExpect(jsonPath("$.cloudDirectory").value(DEFAULT_CLOUD_DIRECTORY.toString()));
     }
 
     @Test
@@ -241,7 +248,8 @@ public class BlogEntryResourceIntTest {
             .shortDescription(UPDATED_SHORT_DESCRIPTION)
             .pictures(UPDATED_PICTURES)
             .picturesContentType(UPDATED_PICTURES_CONTENT_TYPE)
-            .author(UPDATED_AUTHOR);
+            .author(UPDATED_AUTHOR)
+            .cloudDirectory(UPDATED_CLOUD_DIRECTORY);
 
         restBlogEntryMockMvc.perform(put("/api/blog-entries")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -263,6 +271,7 @@ public class BlogEntryResourceIntTest {
         assertThat(testBlogEntry.getPictures()).isEqualTo(UPDATED_PICTURES);
         assertThat(testBlogEntry.getPicturesContentType()).isEqualTo(UPDATED_PICTURES_CONTENT_TYPE);
         assertThat(testBlogEntry.getAuthor()).isEqualTo(UPDATED_AUTHOR);
+        assertThat(testBlogEntry.getCloudDirectory()).isEqualTo(UPDATED_CLOUD_DIRECTORY);
     }
 
     @Test
