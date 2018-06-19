@@ -35,6 +35,6 @@
     "jwtSecretKey": "7d02edc0fbf4c7f6fa44a9bb46b19118ac048fea",
     "jhiPrefix": "jhi",
     "herokuDeployType": "jar",
-    "herokuAppName": null
+    "herokuAppName": "schmongo-blog"
   }
 }

@@ -35,6 +35,7 @@ export class DemoComponent implements OnInit {
     currentBlogEntryText: SafeHtml;
     currentImageGalleryUrls: any;
     currentBlogEntryGalleryUrls: SafeValue[] = [];
+    isNavbarCollapsed: boolean;
 
     isOverview = true;
     @Output()
@@ -52,6 +53,7 @@ export class DemoComponent implements OnInit {
                 private domSanitizer: DomSanitizer,
                 private http: HttpClient
     ) {
+        this.isNavbarCollapsed = true;
 
         this.activatedRoute.queryParams.subscribe((params: Params) => {
             console.log(params);
@@ -131,9 +133,14 @@ export class DemoComponent implements OnInit {
         this.isOverview = true;
     }
 
+    toggleNavbar() {
+        this.isNavbarCollapsed = !this.isNavbarCollapsed;
+    }
+
     trustHtml(text: string) {
         return this.domSanitizer.bypassSecurityTrustHtml(text);
     }
+
     trustUrl(url: string) {
         return this.domSanitizer.bypassSecurityTrustUrl(url)
     }

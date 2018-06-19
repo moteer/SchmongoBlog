@@ -3,14 +3,20 @@
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarResponsive"
+                    aria-controls="navbarResponsive"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    (click)="toggleNavbar()">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed">
                 <ul class="navbar-nav">
                     <li><a href="#home" (click)="showHomePage()">Home</a></li>
-                    <!--<li><a href="#news" (click)="showHomePage()">Aktuelles</a></li>-->
                     <li><a href="#travel" (click)="showHomePage()">Reiseleben Hier &#38; Jetzt</a></li>
                     <li><a href="#early-travel" (click)="showHomePage()">Unsere bisherigen Reisen</a></li>
                     <li><a href="#inspiration" (click)="showHomePage()">Inspiration &#38; Gedanken</a></li>
@@ -19,6 +25,7 @@
                 </ul>
             </div>
         </div>
+
     </nav>
 </header>
 <!-- End Header Area -->
