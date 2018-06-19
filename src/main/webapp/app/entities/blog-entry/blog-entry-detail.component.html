@@ -1,0 +1,73 @@
+
+<div *ngIf="blogEntry">
+    <h2><span>Blog Entry</span> {{blogEntry.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{blogEntry.title}}</span>
+        </dd>
+        <dt><span>Text</span></dt>
+        <dd>
+            <span>{{blogEntry.text}}</span>
+        </dd>
+        <dt><span>Picture</span></dt>
+        <dd>
+            <div *ngIf="blogEntry.picture">
+                <a (click)="openFile(blogEntry.pictureContentType, blogEntry.picture)">
+                    <img [src]="'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture" style="max-width: 100%;" alt="blogEntry image"/>
+                </a>
+                {{blogEntry.pictureContentType}}, {{byteSize(blogEntry.picture)}}
+            </div>
+        </dd>
+        <dt><span>Thumbnail</span></dt>
+        <dd>
+            <div *ngIf="blogEntry.thumbnail">
+                <a (click)="openFile(blogEntry.thumbnailContentType, blogEntry.thumbnail)">
+                    <img [src]="'data:' + blogEntry.thumbnailContentType + ';base64,' + blogEntry.thumbnail" style="max-width: 100%;" alt="blogEntry image"/>
+                </a>
+                {{blogEntry.thumbnailContentType}}, {{byteSize(blogEntry.thumbnail)}}
+            </div>
+        </dd>
+        <dt><span>Date</span></dt>
+        <dd>
+            <span>{{blogEntry.date | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Short Description</span></dt>
+        <dd>
+            <span>{{blogEntry.shortDescription}}</span>
+        </dd>
+        <dt><span>Pictures</span></dt>
+        <dd>
+            <div *ngIf="blogEntry.pictures">
+                <a (click)="openFile(blogEntry.picturesContentType, blogEntry.pictures)">
+                    <img [src]="'data:' + blogEntry.picturesContentType + ';base64,' + blogEntry.pictures" style="max-width: 100%;" alt="blogEntry image"/>
+                </a>
+                {{blogEntry.picturesContentType}}, {{byteSize(blogEntry.pictures)}}
+            </div>
+        </dd>
+        <dt><span>Author</span></dt>
+        <dd>
+            <span>{{blogEntry.author}}</span>
+        </dd>
+        <dt><span>Cloud Directory</span></dt>
+        <dd>
+            <span>{{blogEntry.cloudDirectory}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'blog-entry/'+ blogEntry.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>
