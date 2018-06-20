@@ -33,6 +33,7 @@ export class JhiMainComponent implements OnInit {
     }
 
     toggleAdmin() {
+        console.log("admin toggled in component JhiMainComponent");
         this.isAdmin = !this.isAdmin;
     }
 }

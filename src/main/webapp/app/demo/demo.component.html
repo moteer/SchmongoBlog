@@ -16,12 +16,12 @@
 
             <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed">
                 <ul class="navbar-nav">
-                    <li><a href="#home" (click)="showHomePage()">Home</a></li>
-                    <li><a href="#travel" (click)="showHomePage()">Reiseleben Hier &#38; Jetzt</a></li>
-                    <li><a href="#early-travel" (click)="showHomePage()">Unsere bisherigen Reisen</a></li>
-                    <li><a href="#inspiration" (click)="showHomePage()">Inspiration &#38; Gedanken</a></li>
-                    <li><a href="#us" (click)="showHomePage()">Wer wir sind</a></li>
-                    <li><a href="#contact" (click)="showHomePage()">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#home" (click)="showHomePageAndToggleNavbar()">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#travel" (click)="showHomePageAndToggleNavbar()">Reiseleben Hier &#38; Jetzt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#earlytravel" (click)="showHomePageAndToggleNavbar()">Unsere bisherigen Reisen</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#inspiration" (click)="showHomePageAndToggleNavbar()">Inspiration &#38; Gedanken</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#whoweare" (click)="showHomePageAndToggleNavbar()">Wer wir sind</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" (click)="showHomePageAndToggleNavbar()">Kontakt</a></li>
                 </ul>
             </div>
         </div>
@@ -101,7 +101,7 @@
 <!-- End travel Area -->
 
 <!-- Start alte Reiseberichte Area -->
-<section class="fashion-area section-gap" id="early-travel" *ngIf="isOverview">
+<section class="fashion-area section-gap" id="earlytravel" *ngIf="isOverview">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -173,13 +173,13 @@
 <!-- End alte inspiration Area -->
 
 <!-- Start Resi und Erik Area -->
-<section class="fashion-area section-gap" id="us" *ngIf="isOverview">
+<section class="fashion-area section-gap" id="whoweare" *ngIf="isOverview">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <ul class="navbar-nav">
-                        <li><a href="#us">Wer wir sind</a></li>
+                        <li><a href="#whoweare">Wer wir sind</a></li>
                     </ul>
                     <h1 class="mb-30">Resi und Erik</h1>
                     <p>Hier findet Ihr unseren Steckbrief und eine kleine Geschichte, die davon erzählt, wie das eigentlich alles angefangen hat mit uns und dem Reisen.</p>
@@ -365,8 +365,10 @@
             <p class="col-lg-8 col-sm-12 footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="col-lg-4 col-sm-12 footer-social">
-
             </div>
+        </div>
+        <div class="row footer-bottom d-flex justify-content-between">
+            <a href="#" (click)="toggleAdmin()" style="color: #222222">admin</a>
         </div>
     </div>
 </footer>

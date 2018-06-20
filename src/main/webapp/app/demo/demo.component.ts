@@ -55,12 +55,7 @@ export class DemoComponent implements OnInit {
     ) {
         this.isNavbarCollapsed = true;
 
-        this.activatedRoute.queryParams.subscribe((params: Params) => {
-            console.log(params);
-            if (params.admin && params.admin === "Erik") {
-                this.toggleAdmin();
-            }
-        });
+        console.log("demo component constructed ... ");
     }
 
     ngOnInit() {
@@ -117,6 +112,7 @@ export class DemoComponent implements OnInit {
     }
 
     toggleAdmin() {
+        console.log("admin toggled in component demo.component");
         this.adminButtonToggled.emit(true);
     }
 
@@ -124,13 +120,13 @@ export class DemoComponent implements OnInit {
         this.isOverview = false;
         this.currentBlogEntry = blogEntry;
         this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text)
-        this.currentImageGalleryUrls.zuerich.forEach(url => this.currentBlogEntryGalleryUrls.push(this.trustUrl(url)));
-
-        console.log(this.currentBlogEntryGalleryUrls);
+        //Todo: add image gallery functionality
+        //this.currentImageGalleryUrls.zuerich.forEach(url => this.currentBlogEntryGalleryUrls.push(this.trustUrl(url)));
     }
 
-    showHomePage() {
+    showHomePageAndToggleNavbar() {
         this.isOverview = true;
+        this.toggleNavbar();
     }
 
     toggleNavbar() {
