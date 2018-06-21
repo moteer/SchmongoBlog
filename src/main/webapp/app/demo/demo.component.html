@@ -149,7 +149,6 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
 </section>
 <!-- End alte Reiseberichte Area -->
@@ -157,14 +156,49 @@
 <!-- Start inspiration Area -->
 <section class="travel-area section-gap" id="inspiration" *ngIf="isOverview">
     <div class="container">
-        <div class="row d-flex justify-content-center ">
-            <div class="menu-content pb-70 col-lg-8 resi-yoga-inspiration">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <ul class="navbar-nav">
                         <li><a href="#inspiration">Inspirationen &#38; Gedanken</a></li>
                     </ul>
-                    <h1 class="mb-10">Gedankenwelt</h1>
-                    <p>Etwas Geduld noch, hier entsteht bald etwas ...</p>
+                    <h1 class="mb-10">Gedankenkarussell</h1>
+                    <p>Täglich läuft es rauf und runter das Gedankenkarussell.
+                        Es dreht sich um so viele Themen, mal um das Leben, mal um Entscheidungen die einem bevorstehen, mal um Menschen an die man denkt, über die Arbeit, über Situationen die passiert sind, ums Essen, um die Liebe...
+                        Wenn dieses Karussell mal still steht, geniesst man es ganz besonders.
+                        Dann trifft genau der Moment ein in dem der Kopf frei ist und man geniessen kann.
+                        Den Moment will man dann gern festhalten.
+                        Aber manchmal freut man sich auch Gedanken mit anderen zu teilen, sich inspirieren zu lassen und Dinge auch mal aus einer anderen Perspektive sehen zu können.
+                        Gedankenwelt und Inspiration soll euch teilhaben lassen an unseren Gedankenkarussellen und Menschen,Momente & Dinge die uns inspirieren.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenCategoryInspirationBlogEntries">
+                <div class="single-travel media pb-70" >
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.shortDescription}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddCategoryInspirationBlogEntries">
+                <div class="single-travel media pb-70">
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <div class="dates">
+                        <span>{{blogEntry.date.getDate()}}</span>
+                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
+                    </div>
+                    <div class="media-body align-self-center">
+                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <p>{{blogEntry.shortDescription}}</p>
+                    </div>
                 </div>
             </div>
         </div>
