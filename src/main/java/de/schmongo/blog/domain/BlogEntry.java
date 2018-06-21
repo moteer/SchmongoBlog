@@ -55,6 +55,9 @@ public class BlogEntry implements Serializable {
     @Field("cloud_directory")
     private String cloudDirectory;
 
+    @Field("category")
+    private String category;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public String getId() {
         return id;
@@ -219,6 +222,19 @@ public class BlogEntry implements Serializable {
     public void setCloudDirectory(String cloudDirectory) {
         this.cloudDirectory = cloudDirectory;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public BlogEntry category(String category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -257,6 +273,7 @@ public class BlogEntry implements Serializable {
             ", picturesContentType='" + getPicturesContentType() + "'" +
             ", author='" + getAuthor() + "'" +
             ", cloudDirectory='" + getCloudDirectory() + "'" +
+            ", category='" + getCategory() + "'" +
             "}";
     }
 }

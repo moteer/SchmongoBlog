@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
+            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenCategoryTravelBlogEntries">
                 <div class="single-travel media pb-70" >
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddBlogEntries">
+            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddCategoryTravelBlogEntries">
                 <div class="single-travel media pb-70">
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
@@ -122,7 +122,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenBlogEntries">
+            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenCategoryEarlyTravelBlogEntries">
                 <div class="single-travel media pb-70" >
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddBlogEntries">
+            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddCategoryEarlyTravelBlogEntries">
                 <div class="single-travel media pb-70">
                     <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                     <div class="dates">

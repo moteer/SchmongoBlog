@@ -42,6 +42,10 @@
         {
             "fieldName": "cloudDirectory",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "category",
+            "fieldType": "String"
         }
     ],
     "dto": "no",

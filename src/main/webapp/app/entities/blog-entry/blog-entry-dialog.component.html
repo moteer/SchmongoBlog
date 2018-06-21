@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_text">Text</label>
-            <textarea name="text" id="field_text" [(ngModel)]="blogEntry.text" rows="70" cols="80"></textarea>
+            <textarea class="form-control" name="text" id="field_text" [(ngModel)]="blogEntry.text" rows="50" cols="100"></textarea>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_picture">Picture</label>
@@ -96,6 +96,12 @@
             <label class="form-control-label" for="field_cloudDirectory">Cloud Directory</label>
             <input type="text" class="form-control" name="cloudDirectory" id="field_cloudDirectory"
                 [(ngModel)]="blogEntry.cloudDirectory" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category: {{blogEntry.category}}</label>
+            <select class='select-option' (change)="onSelectCategory($event.target.value)" class="form-control" name="category" id="field_category">
+                <option class='option' *ngFor='let category of categories' [value]="category">{{category}}</option>
+            </select>
         </div>
 
     </div>

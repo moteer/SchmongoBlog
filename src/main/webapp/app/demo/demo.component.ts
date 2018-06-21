@@ -14,6 +14,7 @@ import {DomSanitizer, SafeValue} from "@angular/platform-browser";
 import {SafeHtml} from "@angular/platform-browser/src/security/dom_sanitization_service";
 import {HttpClient} from "@angular/common/http";
 
+
 @Component({
     selector: 'jhi-demo',
     templateUrl: './demo.component.html',
@@ -28,8 +29,13 @@ export class DemoComponent implements OnInit {
     modalRef: NgbModalRef;
     blog: Blog;
     blogEntries: BlogEntry[] = [{id: 'id', title: 'title'}];
-    evenBlogEntries: BlogEntry[] = [];
-    oddBlogEntries: BlogEntry[] = [];
+
+    evenCategoryEarlyTravelBlogEntries: BlogEntry[] = [];
+    oddCategoryEarlyTravelBlogEntries: BlogEntry[] = [];
+    evenCategoryTravelBlogEntries: BlogEntry[] = [];
+    oddCategoryTravelBlogEntries: BlogEntry[] = [];
+    evenCategoryInspirationBlogEntries: BlogEntry[] = [];
+    oddCategoryInspirationBlogEntries: BlogEntry[] = [];
 
     currentBlogEntry: BlogEntry;
     currentBlogEntryText: SafeHtml;
@@ -40,6 +46,7 @@ export class DemoComponent implements OnInit {
     isOverview = true;
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 
 
 
@@ -59,6 +66,7 @@ export class DemoComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("load blog entries ...");
         this.loadBlogEntries();
         //Todo: add image gallery functionality
         //this.loadImageUrls();
@@ -93,11 +101,25 @@ export class DemoComponent implements OnInit {
     }
 
     private assignEvenAndOddBlogEntries() {
+
         for (let i = 0; i < this.blogEntries.length; i++) {
             if (i % 2 === 0) {
-                this.evenBlogEntries.push(this.blogEntries[i]);
+                if (this.blogEntries[i].category === "travel") {
+                    this.evenCategoryTravelBlogEntries.push(this.blogEntries[i]);
+                } else if (this.blogEntries[i].category === "earlyTravel") {
+                    this.evenCategoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
+                } else if (this.blogEntries[i].category === "inspiration") {
+                    this.evenCategoryInspirationBlogEntries.push(this.blogEntries[i]);
+                }
+
             } else {
-                this.oddBlogEntries.push(this.blogEntries[i]);
+                if (this.blogEntries[i].category === "travel") {
+                    this.oddCategoryTravelBlogEntries.push(this.blogEntries[i]);
+                } else if (this.blogEntries[i].category === "earlyTravel") {
+                    this.oddCategoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
+                } else if (this.blogEntries[i].category === "inspiration") {
+                    this.oddCategoryInspirationBlogEntries.push(this.blogEntries[i]);
+                }
             }
         }
     }

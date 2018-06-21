@@ -20,6 +20,8 @@ export class BlogEntryDialogComponent implements OnInit {
     isSaving: boolean;
     dateDp: any;
 
+    private categories: string[] = ["travel", "earlyTravel", "inspiration", "whoweare"];
+
     constructor(
         public activeModal: NgbActiveModal,
         private dataUtils: JhiDataUtils,
@@ -54,6 +56,7 @@ export class BlogEntryDialogComponent implements OnInit {
     }
 
     save() {
+        console.dir(this.blogEntry);
         this.isSaving = true;
         if (this.blogEntry.id !== undefined) {
             this.subscribeToSaveResponse(
@@ -77,6 +80,12 @@ export class BlogEntryDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    onSelectCategory(category) {
+        console.log(category);
+        this.blogEntry.category = category;
+        console.log("this.blogEntry.category: " + this.blogEntry.category);
     }
 }
 
