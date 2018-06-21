@@ -34,7 +34,7 @@
             <tr *ngFor="let blogEntry of blogEntries ;trackBy: trackId">
                 <td><a [routerLink]="['../blog-entry', blogEntry.id ]">{{blogEntry.id}}</a></td>
                 <td>{{blogEntry.title}}</td>
-                <td>{{blogEntry.text}}</td>
+                <td>{{blogEntry.text| slice:0:80}}</td>
                 <td>
                     <a *ngIf="blogEntry.picture" (click)="openFile(blogEntry.pictureContentType, blogEntry.picture)">
                         <img [src]="'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture" style="max-height: 30px;" alt="blogEntry image"/>
@@ -88,4 +88,13 @@
             </tbody>
         </table>
     </div>
+    <h2>
+        <span>Blog Entries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-blog-entry" [routerLink]="['/', { outlets: { popup: ['blog-entry-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Blog Entry
+            </span>
+        </button>
+    </h2>
 </div>
