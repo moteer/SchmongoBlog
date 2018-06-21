@@ -19,8 +19,7 @@ export class BlogEntryDialogComponent implements OnInit {
     blogEntry: BlogEntry;
     isSaving: boolean;
     dateDp: any;
-
-    private categories: string[] = ["travel", "earlyTravel", "inspiration", "whoweare"];
+    categories: string[] = ["travel", "earlyTravel", "inspiration", "whoweare"];
 
     constructor(
         public activeModal: NgbActiveModal,
