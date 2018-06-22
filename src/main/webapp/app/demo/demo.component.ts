@@ -39,7 +39,7 @@ export class DemoComponent implements OnInit {
 
     currentBlogEntry: BlogEntry;
     currentBlogEntryText: SafeHtml;
-    currentImageGalleryUrls: any;
+    imageUrls: any;
     currentBlogEntryGalleryUrls: SafeValue[] = [];
     isNavbarCollapsed: boolean;
 
@@ -47,7 +47,7 @@ export class DemoComponent implements OnInit {
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-
+    slideIndex = 1;
 
 
     constructor(private principal: Principal,
@@ -61,15 +61,15 @@ export class DemoComponent implements OnInit {
                 private http: HttpClient
     ) {
         this.isNavbarCollapsed = true;
-
-        console.log("demo component constructed ... ");
     }
 
     ngOnInit() {
         console.log("load blog entries ...");
         this.loadBlogEntries();
-        //Todo: add image gallery functionality
-        //this.loadImageUrls();
+        this.loadImageUrls();
+
+        //this.showSlides(this.slideIndex);
+        console.log("demo component constructed ... ");
     }
 
     /**
@@ -93,8 +93,10 @@ export class DemoComponent implements OnInit {
             .subscribe(
                 data => {
                     console.log(data.body);
-                    this.currentImageGalleryUrls = data.body;
+                    this.imageUrls = data.body;
                     console.log(data);
+                    console.log("Imageurls loaded ...");
+                    console.dir(this.imageUrls);
                 },
                 err => console.log(err)
             );
@@ -139,11 +141,27 @@ export class DemoComponent implements OnInit {
     }
 
     showBlogEntry(blogEntry: BlogEntry) {
+        console.log("-----------> showBlogEntry ##############################################");
         this.isOverview = false;
         this.currentBlogEntry = blogEntry;
-        this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text)
-        //Todo: add image gallery functionality
-        //this.currentImageGalleryUrls.zuerich.forEach(url => this.currentBlogEntryGalleryUrls.push(this.trustUrl(url)));
+        this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text);
+
+        console.log("-----------> set currentBlogEntryGalleryUrls to length 0 and display #####");
+        this.currentBlogEntryGalleryUrls.length = 0;
+        console.dir(this.currentBlogEntryGalleryUrls);
+
+        console.log("-----------> display imageUrls ###########################################");
+        console.dir(this.imageUrls);
+
+
+        console.log("-----------> display currentBlogEntry.cloudDirectorydisplay ##############");
+        console.log(this.currentBlogEntry.cloudDirectory);
+
+        console.log("-----------> set currentBlogEntryGalleryUrls to imageUrls and display ####");
+        if (this.imageUrls[this.currentBlogEntry.cloudDirectory]) {
+            this.currentBlogEntryGalleryUrls = this.imageUrls[this.currentBlogEntry.cloudDirectory].slice();
+        }
+        console.dir(this.currentBlogEntryGalleryUrls);
     }
 
     showHomePageAndToggleNavbar() {
@@ -161,5 +179,63 @@ export class DemoComponent implements OnInit {
 
     trustUrl(url: string) {
         return this.domSanitizer.bypassSecurityTrustUrl(url)
+    }
+
+    openModal(){
+        console.log("open Modal");
+        document.getElementById('myModal').style.display = "block";
+    }
+
+
+    closeModal() {
+        console.log("close Modal");
+        document.getElementById('myModal').style.display = "none";
+        this.showNavbar(true);
+
+    }
+
+    // Next/previous controls
+    plusSlides(n) {
+        let newSlideIndex = this.slideIndex += n;
+        this.showSlides(newSlideIndex);
+    }
+
+    // Thumbnail image controls
+    currentSlide(n) {
+        this.slideIndex = n;
+        this.showSlides(n);
+    }
+
+    showSlides(n) {
+        console.log("n: " + n);
+        console.log("slideIndex: " + this.slideIndex);
+        this.showNavbar(false);
+        console.dir(this.currentBlogEntryGalleryUrls);
+
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("demo");
+        let captionText = document.getElementById("caption");
+        if (n >= slides.length) {this.slideIndex = 0}
+        if (n < 0) {this.slideIndex = slides.length}
+        for (let i = 0; i < slides.length; i++) {
+            slides[i]['style'].display = "none";
+        }
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[this.slideIndex]['style'].display = "block";
+        dots[this.slideIndex].className += " active";
+        captionText.innerHTML = dots[this.slideIndex]['alt'];
+    }
+
+    private showNavbar(show) {
+        let navbar = document.getElementsByClassName("navbar");
+        for (let i = 0; i < navbar.length; i++) {
+            if (show) {
+                navbar[i]['style'].display = "block";
+            } else {
+                navbar[i]['style'].display = "none";
+            }
+        }
     }
 }

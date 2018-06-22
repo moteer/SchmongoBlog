@@ -1,5 +1,5 @@
 <!-- Start Header Area -->
-<header class="default-header">
+<header id="navbar" class="default-header">
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
 
@@ -310,6 +310,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="tags">
                             <ul>
                                 <li><a href="#">Zürich</a></li>
@@ -317,6 +318,7 @@
                                 <li><a href="#">Reisen</a></li>
                             </ul>
                         </div>
+                        -->
                         <div class="single-post-content e2e-inner-html-bound" [innerHtml]="currentBlogEntryText">
                         </div>
                         <div class="bottom-wrapper">
@@ -333,46 +335,57 @@
                     </div>
                 </div>
             </div>
-            <!--
-                        <div class="section-top-border">
-                            <h3>Image Gallery</h3>
-                            <div class="row gallery-item">
 
-                                <div class="col-md-4" *ngFor="let imageUrl of currentBlogEntryGalleryUrls">
-                                    <a [href]="imageUrl" class="img-pop-up">
-                                        <div class="single-gallery-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
-                                            <img [src]="imageUrl"/>
-                                        </div></a>
+            <div>
+                <div class="section-top-border">
+                    <h3>Galerie</h3>
+                    <div class="row gallery-item">
+                        <div class="col-md-4"
+                             *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index=index; let o=odd; let e=even;"
+                        (click)="openModal(); currentSlide(index)">
+                            <!--<a [href]="imageUrl" class="img-pop-up">-->
+                                <div class="single-gallery-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
+                                    <!--
+                                    <img class="gallery-image" [src]="imageUrl"/>
+                                    -->
                                 </div>
-
-                                <div class="col-md-4">
-                                    <a href="../../content/img/galleries/zuerich/2.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/2.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="../../content/img/galleries/zuerich/3.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/3.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="../../content/img/galleries/zuerich/4.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/4.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="../../content/img/galleries/zuerich/5.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/5.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="../../content/img/galleries/zuerich/6.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/6.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="../../content/img/galleries/zuerich/7.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/7.jpg);"></div></a>
-                                </div>
-                                <div class="col-md-4">
-                                    <a href="../../content/img/galleries/zuerich/8.jpg" class="img-pop-up"><div class="single-gallery-image" style="background: url(../../content/img/galleries/zuerich/8.jpg);"></div></a>
-                                </div>
-
+                            <!--</a>-->
+                        </div>
+                    </div>
                 </div>
             </div>
-        -->
+
         </div>
     </section>
 </div>
+<!-- The Modal/Lightbox -->
+<div id="myModal" class="modal">
+    <span class="close cursor" (click)="closeModal()">&times;</span>
+    <div class="modal-content">
+
+        <div class="mySlides" *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index = index;">
+            <div class="numbertext">{{index}} / {{currentBlogEntryGalleryUrls.length}}</div>
+            <img class="demo" [src]="imageUrl" style="width:100%">
+        </div>
+
+        <!-- Next/previous controls -->
+        <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+        <a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+        <!-- Caption text -->
+        <div class="caption-container">
+            <p id="caption"></p>
+        </div>
+
+        <!-- Thumbnail image controls -->
+        <!--
+        <div class="column" *ngFor="let imageUrl of currentBlogEntryGalleryUrls">
+            <img class="demo" style="height: 50px" [src]="imageUrl" (click)="currentSlide(1)" alt="image">
+        </div>
+-->
+    </div>
+</div>
+
 <!-- End blog entry Area -->
 
 
