@@ -188,3 +188,15 @@ img.demo.hover-shadow {
 .hover-shadow:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.carousel-title {
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+}
+.carousel-title:hover,
+.carousel-description:hover {
+    color: #777777;
+    cursor: pointer;
+}
+

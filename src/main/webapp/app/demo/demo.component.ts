@@ -34,6 +34,7 @@ export class DemoComponent implements OnInit {
     oddCategoryEarlyTravelBlogEntries: BlogEntry[] = [];
     evenCategoryTravelBlogEntries: BlogEntry[] = [];
     oddCategoryTravelBlogEntries: BlogEntry[] = [];
+    categoryEarlyTravelBlogEntries: BlogEntry[] = [];
     evenCategoryInspirationBlogEntries: BlogEntry[] = [];
     oddCategoryInspirationBlogEntries: BlogEntry[] = [];
 
@@ -109,7 +110,7 @@ export class DemoComponent implements OnInit {
                 if (this.blogEntries[i].category === "travel") {
                     this.evenCategoryTravelBlogEntries.push(this.blogEntries[i]);
                 } else if (this.blogEntries[i].category === "earlyTravel") {
-                    this.evenCategoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
+                    this.categoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
                 } else if (this.blogEntries[i].category === "inspiration") {
                     this.evenCategoryInspirationBlogEntries.push(this.blogEntries[i]);
                 }
@@ -118,7 +119,7 @@ export class DemoComponent implements OnInit {
                 if (this.blogEntries[i].category === "travel") {
                     this.oddCategoryTravelBlogEntries.push(this.blogEntries[i]);
                 } else if (this.blogEntries[i].category === "earlyTravel") {
-                    this.oddCategoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
+                    this.categoryEarlyTravelBlogEntries.push(this.blogEntries[i]);
                 } else if (this.blogEntries[i].category === "inspiration") {
                     this.oddCategoryInspirationBlogEntries.push(this.blogEntries[i]);
                 }
