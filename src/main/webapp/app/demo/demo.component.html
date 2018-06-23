@@ -31,7 +31,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section id="home" class="home-bg" *ngIf="isOverview">
+<section id="home" class="parallax" *ngIf="isOverview">
     <div class="container">
         <div class="row justify-content-center">
             <div class="banner-content d-flex align-items-top col-lg-12 col-md-12">
@@ -134,7 +134,7 @@
                         <div class="carousel-item" [ngClass]="{ active: first}"
                              *ngFor="let blogEntry of categoryEarlyTravelBlogEntries; let first = first;">
                             <img class="d-block w-100" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                            <div class="carousel-caption d-none d-md-block">
+                            <div class="carousel-caption d-md-block">
                                 <p class="carousel-title" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</p>
                                 <p class="carousel-description" (click)="showBlogEntry(blogEntry)">{{blogEntry.shortDescription}}</p>
                             </div>
@@ -223,34 +223,16 @@
             </div>
         </div>
         <div class="row justify-content-center d-flex align-items-center">
-            <div class="col-lg-6 team-left">
-                <p>
-                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that.
-                </p>
-                <p>
-                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women.
-                </p>
-            </div>
-            <!--
-            <div class="col-lg-6 team-right d-flex justify-content-center">
-                <div class="row active-team-carusel">
-                    <div class="single-team" *ngFor="let blogEntry of categoryWhoWeAreBlogEntries">
-                        <div class="thumb">
-                            <img class="img-fluid" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                            <div class="align-items-center justify-content-center d-flex">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                        <div class="meta-text mt-30 text-center">
-                            <h4>{{blogEntry.title}}</h4>
-                            <p>{{blogEntry.shortDescription}}</p>
-                        </div>
+            <div class="col-sm-4 px-5 mt-2" *ngFor="let blogEntry of categoryWhoWeAreBlogEntries">
+                <div class="card">
+                    <img class="card-img-top" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}" style="width:100%; height: auto">
+                    <div class="card-body text-truncate">
+                        <h4 class="card-title">{{blogEntry.title}}</h4>
+                        <p class="card-text">{{blogEntry.shortDescription}}</p>
+                        <a href="#" (click)="showBlogEntry(blogEntry)" class="btn btn-primary">Zur Beschreibung</a>
                     </div>
                 </div>
             </div>
-            -->
         </div>
     </div>
 </section>
@@ -300,7 +282,6 @@
                                 <div class="col-lg-4 single-b-wrap col-md-12">
                                 </div>
                                 <div class="col-lg-4 single-b-wrap col-md-12">
-
                                 </div>
                             </div>
                         </div>
@@ -310,7 +291,7 @@
 
             <div>
                 <div class="section-top-border">
-                    <h3>Galerie</h3>
+                    <h3 *ngIf="currentBlogEntryGalleryUrls.length > 0">Galerie</h3>
                     <div class="row gallery-item">
                         <div class="col-md-4"
                              *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index=index; let o=odd; let e=even;"

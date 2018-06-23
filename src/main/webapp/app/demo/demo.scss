@@ -12,6 +12,20 @@ Main page styles
     //background-size: 100% 100%;
 }
 
+.parallax {
+    /* The image used */
+    background-image: url('../../content/img/header-nz2.jpg');
+
+    /* Set a specific height */
+    height: 800px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .resi-yoga-inspiration {
     background-image: url('../../content/img/resi-yoga-inspiration.jpg');
     height: 200px;
