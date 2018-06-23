@@ -9,7 +9,7 @@ import {Account, LoginModalService, Principal} from '../shared';
 import {BlogEntry} from '../entities/blog-entry';
 import {Blog} from '../entities/blog';
 import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {ActivatedRoute, Params} from '@angular/router'
+import {ActivatedRoute} from '@angular/router'
 import {DomSanitizer, SafeValue} from "@angular/platform-browser";
 import {SafeHtml} from "@angular/platform-browser/src/security/dom_sanitization_service";
 import {HttpClient} from "@angular/common/http";
@@ -37,6 +37,7 @@ export class DemoComponent implements OnInit {
     categoryEarlyTravelBlogEntries: BlogEntry[] = [];
     evenCategoryInspirationBlogEntries: BlogEntry[] = [];
     oddCategoryInspirationBlogEntries: BlogEntry[] = [];
+    categoryWhoWeAreBlogEntries: BlogEntry[] = [];
 
     currentBlogEntry: BlogEntry;
     currentBlogEntryText: SafeHtml;
@@ -69,7 +70,6 @@ export class DemoComponent implements OnInit {
         this.loadBlogEntries();
         this.loadImageUrls();
 
-        //this.showSlides(this.slideIndex);
         console.log("demo component constructed ... ");
     }
 
@@ -124,6 +124,10 @@ export class DemoComponent implements OnInit {
                     this.oddCategoryInspirationBlogEntries.push(this.blogEntries[i]);
                 }
             }
+
+            if (this.blogEntries[i].category === "whoweare") {
+                this.categoryWhoWeAreBlogEntries.push(this.blogEntries[i]);
+            }
         }
     }
 
@@ -167,7 +171,7 @@ export class DemoComponent implements OnInit {
 
     showHomePageAndToggleNavbar() {
         this.isOverview = true;
-        this.toggleNavbar();
+        this.isNavbarCollapsed = true;
     }
 
     toggleNavbar() {

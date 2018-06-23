@@ -59,7 +59,7 @@
             <div class="menu-content pb-70 col-lg-8">
                 <div class="title text-center">
                     <ul class="navbar-nav">
-                        <li><a href="#home">Reiseleben Hier &#38; Jetzt</a></li>
+                        <li><a href="#travel">Reiseleben Hier &#38; Jetzt</a></li>
                     </ul>
                     <h2 class="mb-10">Zu Fuss von Zürich nach Italien</h2>
                     <p>Nun haben wir über ein ganzes Jahr in Zürich gelebt und wirklich wenig von der Schweiz gesehen.
@@ -222,56 +222,34 @@
             </div>
         </div>
         <div class="row justify-content-center d-flex align-items-center">
-            <div class="section-top-border">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20">Resis</h4>
-                            <h5>Wünsche & Ziele während der Reise:</h5>
-                            <br/>
-                            <ul>
-                                <li>- Tiefe Glückseligkeit, Zufriedenheit und Achtsamkeit verspüren</li>
-                                <li>- den Mut neue Dinge auszuprobieren & zu wagen und sich Ängsten zu stellen (Vielleicht sogar der Katzenangst :-) )</li>
-                                <li>- viel Zeit für Yoga, Meditation und Spiritualität </li>
-                                <li>- eine Bestimmung finden die mir Spass bereitet und mich erfüllt </li>
-                            </ul>
-                            <br/>
-                            <h5> Reisezielwünsche ganz oben auf der Liste:</h5>
-                            <br/>
-                            <ul>
-                                <li>- Indien</li>
-                                <li>- Marokko</li>
-                                <li>- Italien</li>
-                                <li>- Mexiko</li>
-                            </ul>
+            <div class="col-lg-6 team-left">
+                <p>
+                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women, our behavior on the job is beyond reproach. inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that.
+                </p>
+                <p>
+                    inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially in the workplace. That’s why it’s crucial that, as women.
+                </p>
+            </div>
+            <!--
+            <div class="col-lg-6 team-right d-flex justify-content-center">
+                <div class="row active-team-carusel">
+                    <div class="single-team" *ngFor="let blogEntry of categoryWhoWeAreBlogEntries">
+                        <div class="thumb">
+                            <img class="img-fluid" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                            <div class="align-items-center justify-content-center d-flex">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin"></i></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single-defination">
-                            <h4 class="mb-20">Eriks</h4>
-                            <h5>Wünsche & Ziele während der Reise:</h5>
-                            <br/>
-                            <ul>
-                                <li>- richtig gut surfen zu können</li>
-                                <li>- die Leichtigkeit des Lebens wiederfinden</li>
-                                <li>- Umsetzbare Vision für die Zukunft finden</li>
-                                <li>- mindestens 1 was unerwartetes Neues kennenlernen & für mich entdecken ( Sprache, Sportart, Musik...irgendwas)</li>
-                            </ul>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <h5> Reisezielwünsche ganz oben auf der Liste:</h5>
-                            <br/>
-                            <ul>
-                                <li>- Nicaragua</li>
-                                <li>- Borneo</li>
-                                <li>- Marokko</li>
-                                <li>- Ecuador</li>
-                            </ul>
+                        <div class="meta-text mt-30 text-center">
+                            <h4>{{blogEntry.title}}</h4>
+                            <p>{{blogEntry.shortDescription}}</p>
                         </div>
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </section>
@@ -351,34 +329,36 @@
         </div>
     </section>
 </div>
+
 <!-- The Modal/Lightbox -->
-<div id="myModal" class="modal">
-    <span class="close cursor" (click)="closeModal()">&times;</span>
-    <div class="modal-content">
+<section>
+    <div id="myModal" class="modal">
+        <span class="close cursor" (click)="closeModal()">&times;</span>
+        <div class="modal-content">
 
-        <div class="mySlides" *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index = index;">
-            <div class="numbertext">{{index}} / {{currentBlogEntryGalleryUrls.length}}</div>
-            <img class="demo" [src]="imageUrl" style="width:100%">
+            <div class="mySlides" *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index = index;">
+                <div class="numbertext">{{index}} / {{currentBlogEntryGalleryUrls.length}}</div>
+                <img class="demo" [src]="imageUrl" style="width:100%">
+            </div>
+
+            <!-- Next/previous controls -->
+            <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+            <a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <!--
+            <div class="column" *ngFor="let imageUrl of currentBlogEntryGalleryUrls">
+                <img class="demo" style="height: 50px" [src]="imageUrl" (click)="currentSlide(1)" alt="image">
+            </div>
+    -->
         </div>
-
-        <!-- Next/previous controls -->
-        <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
-        <a class="next" (click)="plusSlides(1)">&#10095;</a>
-
-        <!-- Caption text -->
-        <div class="caption-container">
-            <p id="caption"></p>
-        </div>
-
-        <!-- Thumbnail image controls -->
-        <!--
-        <div class="column" *ngFor="let imageUrl of currentBlogEntryGalleryUrls">
-            <img class="demo" style="height: 50px" [src]="imageUrl" (click)="currentSlide(1)" alt="image">
-        </div>
--->
     </div>
-</div>
-
+</section>
 <!-- End blog entry Area -->
 
 
