@@ -69,7 +69,6 @@ export class DemoComponent implements OnInit {
         console.log("load blog entries ...");
         this.loadBlogEntries();
         this.loadImageUrls();
-
         console.log("demo component constructed ... ");
     }
 
