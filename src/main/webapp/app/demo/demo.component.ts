@@ -14,7 +14,6 @@ import {DomSanitizer, SafeValue} from "@angular/platform-browser";
 import {SafeHtml} from "@angular/platform-browser/src/security/dom_sanitization_service";
 import {HttpClient} from "@angular/common/http";
 
-
 @Component({
     selector: 'jhi-demo',
     templateUrl: './demo.component.html',
@@ -31,8 +30,6 @@ export class DemoComponent implements OnInit, AfterViewInit {
     blog: Blog;
     blogEntries: BlogEntry[] = [{id: 'id', title: 'title'}];
 
-    evenCategoryEarlyTravelBlogEntries: BlogEntry[] = [];
-    oddCategoryEarlyTravelBlogEntries: BlogEntry[] = [];
     evenCategoryTravelBlogEntries: BlogEntry[] = [];
     oddCategoryTravelBlogEntries: BlogEntry[] = [];
     categoryEarlyTravelBlogEntries: BlogEntry[] = [];
@@ -47,7 +44,8 @@ export class DemoComponent implements OnInit, AfterViewInit {
     isNavbarCollapsed: boolean;
 
     isOverview = true;
-    private isGallery = false;
+    isGallery = false;
+
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -183,7 +181,14 @@ export class DemoComponent implements OnInit, AfterViewInit {
         }
         console.debug(this.currentBlogEntryGalleryUrls);
 
-        window.scrollTo(0, 0);
+        setTimeout(
+            () => {
+                    console.debug("scroll blogentry to the top");
+                    let blogentry = document.getElementById('blogentry');
+                    blogentry.scrollTo(0, 0);
+                    document.body.scrollTop = 0;
+                },
+            0);
     }
 
     showHomePageAndToggleNavbar() {
