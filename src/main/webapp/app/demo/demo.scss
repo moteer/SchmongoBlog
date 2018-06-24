@@ -26,25 +26,8 @@ Main page styles
     background-size: cover;
 }
 
-.resi-yoga-inspiration {
-    background-image: url('../../content/img/resi-yoga-inspiration.jpg');
-    height: 200px;
-    background-repeat: no-repeat;
-}
-
-.wer-wir-sind {
-    background-image: url('../../content/img/erik-und-resi.jpg');
-    height: 200px;
-    background-repeat: no-repeat;
-}
-
 .wer-wir-sind:hover {
     opacity: 0.5;
-}
-
-.resi-und-erik {
-    background-image: url('../../content/img/resi-yoga-inspiration.jpg');
-    background-size: cover;
 }
 
 .carousel-picture {
@@ -137,6 +120,11 @@ only screen and (                min-resolution: 2dppx) {
 /* Hide the slides by default */
 .mySlides {
     display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
 }
 
 /* Next & previous buttons */

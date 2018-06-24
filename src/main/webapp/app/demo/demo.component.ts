@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, AfterViewInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
@@ -24,7 +24,8 @@ import {HttpClient} from "@angular/common/http";
     ]
 
 })
-export class DemoComponent implements OnInit {
+export class DemoComponent implements OnInit, AfterViewInit {
+
     account: Account;
     modalRef: NgbModalRef;
     blog: Blog;
@@ -46,6 +47,7 @@ export class DemoComponent implements OnInit {
     isNavbarCollapsed: boolean;
 
     isOverview = true;
+    private isGallery = false;
     @Output()
     adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -70,6 +72,17 @@ export class DemoComponent implements OnInit {
         this.loadBlogEntries();
         this.loadImageUrls();
         console.debug("demo component constructed ... ");
+    }
+
+    ngAfterViewInit(): void {
+        console.debug("After View Init");
+        if (!this.isOverview) {
+            let myModal = document.getElementById('myModal');
+            if (myModal != null) {
+                myModal.scrollIntoView();
+                myModal = null;
+            }
+        }
     }
 
     /**
@@ -191,13 +204,16 @@ export class DemoComponent implements OnInit {
 
     openModal(){
         console.debug("open Modal");
-        document.getElementById('myModal').style.display = "block";
-        window.scrollTo(0, 0);
+        this.isGallery = true;
+        let lightbox = document.getElementById('myModal');
+        lightbox.style.display = "block";
+        lightbox.scrollTo(0,0);
     }
 
 
     closeModal() {
         console.debug("close Modal");
+        this.isGallery = false;
         document.getElementById('myModal').style.display = "none";
         this.showNavbar(true);
 
@@ -232,6 +248,9 @@ export class DemoComponent implements OnInit {
         for (let i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
+        console.debug("this.slideIndex: " + this.slideIndex);
+        console.debug("slides[this.slideIndex]['style']x: " + slides[this.slideIndex]['style']);
+
         slides[this.slideIndex]['style'].display = "block";
         dots[this.slideIndex].className += " active";
         captionText.innerHTML = dots[this.slideIndex]['alt'];
