@@ -66,10 +66,10 @@ export class DemoComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("load blog entries ...");
+        console.debug("load blog entries ...");
         this.loadBlogEntries();
         this.loadImageUrls();
-        console.log("demo component constructed ... ");
+        console.debug("demo component constructed ... ");
     }
 
     /**
@@ -92,11 +92,11 @@ export class DemoComponent implements OnInit {
         this.http.get<string[]>('api/imageurls', { params: {}, observe: 'response' })
             .subscribe(
                 data => {
-                    console.log(data.body);
+                    console.debug(data.body);
                     this.imageUrls = data.body;
-                    console.log(data);
-                    console.log("Imageurls loaded ...");
-                    console.dir(this.imageUrls);
+                    console.debug(data);
+                    console.debug("Imageurls loaded ...");
+                    console.debug(this.imageUrls);
                 },
                 err => console.log(err)
             );
@@ -132,6 +132,9 @@ export class DemoComponent implements OnInit {
 
 
     createImageUrlFor(blogEntry: BlogEntry): string {
+        console.debug("-----------> pictureContentType ########################################");
+        console.debug(blogEntry.title);
+        console.debug(blogEntry.pictureContentType);
         return 'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture;
     }
 
@@ -140,37 +143,38 @@ export class DemoComponent implements OnInit {
     }
 
     toggleAdmin() {
-        console.log("admin toggled in component demo.component");
+        console.debug("admin toggled in component demo.component");
         this.adminButtonToggled.emit(true);
     }
 
     showBlogEntry(blogEntry: BlogEntry) {
-        console.log("-----------> showBlogEntry ##############################################");
+        console.debug("-----------> showBlogEntry ##############################################");
         this.isOverview = false;
         this.currentBlogEntry = blogEntry;
         this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text);
 
-        console.log("-----------> set currentBlogEntryGalleryUrls to length 0 and display #####");
+        console.debug("-----------> set currentBlogEntryGalleryUrls to length 0 and display #####");
         this.currentBlogEntryGalleryUrls.length = 0;
-        console.dir(this.currentBlogEntryGalleryUrls);
+        console.debug(this.currentBlogEntryGalleryUrls);
 
-        console.log("-----------> display imageUrls ###########################################");
-        console.dir(this.imageUrls);
+        console.debug("-----------> display imageUrls ###########################################");
+        console.debug(this.imageUrls);
 
 
-        console.log("-----------> display currentBlogEntry.cloudDirectorydisplay ##############");
-        console.log(this.currentBlogEntry.cloudDirectory);
+        console.debug("-----------> display currentBlogEntry.cloudDirectorydisplay ##############");
+        console.debug(this.currentBlogEntry.cloudDirectory);
 
-        console.log("-----------> set currentBlogEntryGalleryUrls to imageUrls and display ####");
+        console.debug("-----------> set currentBlogEntryGalleryUrls to imageUrls and display ####");
         if (this.imageUrls[this.currentBlogEntry.cloudDirectory]) {
             this.currentBlogEntryGalleryUrls = this.imageUrls[this.currentBlogEntry.cloudDirectory].slice();
         }
-        console.dir(this.currentBlogEntryGalleryUrls);
+        console.debug(this.currentBlogEntryGalleryUrls);
+
+        window.scrollTo(0, 0);
     }
 
     showHomePageAndToggleNavbar() {
         this.isOverview = true;
-        this.isNavbarCollapsed = true;
     }
 
     toggleNavbar() {
@@ -186,13 +190,14 @@ export class DemoComponent implements OnInit {
     }
 
     openModal(){
-        console.log("open Modal");
+        console.debug("open Modal");
         document.getElementById('myModal').style.display = "block";
+        window.scrollTo(0, 0);
     }
 
 
     closeModal() {
-        console.log("close Modal");
+        console.debug("close Modal");
         document.getElementById('myModal').style.display = "none";
         this.showNavbar(true);
 
@@ -211,10 +216,10 @@ export class DemoComponent implements OnInit {
     }
 
     showSlides(n) {
-        console.log("n: " + n);
-        console.log("slideIndex: " + this.slideIndex);
+        console.debug("n: " + n);
+        console.debug("slideIndex: " + this.slideIndex);
         this.showNavbar(false);
-        console.dir(this.currentBlogEntryGalleryUrls);
+        console.debug(this.currentBlogEntryGalleryUrls);
 
         let slides = document.getElementsByClassName("mySlides");
         let dots = document.getElementsByClassName("demo");

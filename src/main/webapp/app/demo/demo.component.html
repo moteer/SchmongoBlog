@@ -1,37 +1,32 @@
 <!-- Start Header Area -->
 <header id="navbar" class="default-header">
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
 
-            <button class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target="#navbarResponsive"
-                    aria-controls="navbarResponsive"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-                    (click)="toggleNavbar()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-right">
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">undlos.blog</a>
 
-            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#home" (click)="showHomePageAndToggleNavbar()">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#travel" (click)="showHomePageAndToggleNavbar()">Reiseleben Hier &#38; Jetzt</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#earlytravel" (click)="showHomePageAndToggleNavbar()">Unsere bisherigen Reisen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#inspiration" (click)="showHomePageAndToggleNavbar()">Inspiration &#38; Gedanken</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#whoweare" (click)="showHomePageAndToggleNavbar()">Wer wir sind</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact" (click)="showHomePageAndToggleNavbar()">Kontakt</a></li>
-                </ul>
-            </div>
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#home" (click)="showHomePageAndToggleNavbar()">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#travel" (click)="showHomePageAndToggleNavbar()">Reiseleben Hier &#38; Jetzt</a></li>
+                <li class="nav-item"><a class="nav-link" href="#earlytravel" (click)="showHomePageAndToggleNavbar()">Unsere bisherigen Reisen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#inspiration" (click)="showHomePageAndToggleNavbar()">Inspiration &#38; Gedanken</a></li>
+                <li class="nav-item"><a class="nav-link" href="#whoweare" (click)="showHomePageAndToggleNavbar()">Wer wir sind</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact" (click)="showHomePageAndToggleNavbar()">Kontakt</a></li>
+            </ul>
         </div>
-
     </nav>
 </header>
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section id="home" class="parallax" *ngIf="isOverview">
+<section id="home" class="home-bg" *ngIf="isOverview">
     <div class="container">
         <div class="row justify-content-center">
             <div class="banner-content d-flex align-items-top col-lg-12 col-md-12">
@@ -43,9 +38,7 @@
             </div>
             <div class="head-bottom-meta d-flex justify-content-between align-items-end col-lg-12">
                 <div class="col-lg-6 flex-row d-flex meta-left no-padding">
-
                 </div>
-
             </div>
         </div>
     </div>
