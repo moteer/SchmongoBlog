@@ -1,8 +1,6 @@
 <jhi-page-ribbon></jhi-page-ribbon>
 
-<jhi-demo *ngIf="!isAdmin" (adminButtonToggled)="toggleAdmin()"></jhi-demo>
-
-<div *ngIf="isAdmin">
+<div>
     <div>
         <router-outlet name="navbar"></router-outlet>
     </div>

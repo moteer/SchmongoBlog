@@ -3,6 +3,12 @@
 Main page styles
 ========================================================================== */
 
+.sticky-navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
 .home-bg {
     background-image: url('../../content/img/header-nz2.jpg');
     //background-repeat: no-repeat;
@@ -175,16 +181,16 @@ only screen and (                min-resolution: 2dppx) {
     color: white;
 }
 
-img.demo {
+img.landing {
     opacity: 1.0;
 }
 
 .active,
-.demo:hover {
+.landing:hover {
     opacity: 1;
 }
 
-img.demo.hover-shadow {
+img.landing.hover-shadow {
     transition: 0.3s;
 }
 

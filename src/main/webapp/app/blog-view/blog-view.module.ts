@@ -3,20 +3,23 @@ import {RouterModule} from '@angular/router';
 
 import {SchmongoBlogSharedModule} from '../shared';
 
-import {DEMO_ROUTE, DemoComponent} from './';
+import {BLOG_VIEW_ROUTE} from './';
 import {HttpClientModule} from "@angular/common/http";
+import {CloudImageService} from "../cloud/cloud-image.service";
 
 @NgModule({
     imports: [
         SchmongoBlogSharedModule,
-        RouterModule.forChild([DEMO_ROUTE]),
+        RouterModule.forChild([BLOG_VIEW_ROUTE]),
         HttpClientModule
     ],
     declarations: [
     ],
     entryComponents: [],
-    providers: [],
+    providers: [
+        CloudImageService
+    ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SchmongoBlogDemoModule {
+export class BlogViewModule {
 }

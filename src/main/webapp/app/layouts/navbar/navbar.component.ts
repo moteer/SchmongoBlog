@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     swaggerEnabled: boolean;
     modalRef: NgbModalRef;
     version: string;
+    isAdmin: boolean = false;
 
     constructor(
         private loginService: LoginService,
@@ -31,6 +32,11 @@ export class NavbarComponent implements OnInit {
     ) {
         this.version = VERSION ? 'v' + VERSION : '';
         this.isNavbarCollapsed = true;
+        this.checkRouteForAdmin();
+    }
+
+    private checkRouteForAdmin() {
+        this.isAdmin = this.router.isActive("admin", true);
     }
 
     ngOnInit() {
@@ -38,6 +44,7 @@ export class NavbarComponent implements OnInit {
             this.inProduction = profileInfo.inProduction;
             this.swaggerEnabled = profileInfo.swaggerEnabled;
         });
+        this.checkRouteForAdmin();
     }
 
     collapseNavbar() {

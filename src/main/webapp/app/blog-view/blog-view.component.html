@@ -1,0 +1,156 @@
+<!-- Start Header Area -->
+<header id="navbar" class="default-header">
+
+    <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-right fixed-top sticky-top sticky-navbar">
+        <!-- Brand -->
+        <a class="navbar-brand" routerLink="" href="#home">undlos.blog</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" routerLink="">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<!-- End Header Area -->
+
+<!-- The Modal/Lightbox -->
+<section style="display: inline-block">
+    <div id="myModal" class="modal">
+        <span class="close cursor" (click)="closeModal()">&times;</span>
+        <div class="modal-content">
+
+            <div class="mySlides" *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index = index;">
+                <div class="numbertext">{{index}} / {{currentBlogEntryGalleryUrls.length}}</div>
+                <img class="blogentry" [src]="imageUrl" style="width:100%">
+            </div>
+
+            <!-- Next/previous controls -->
+            <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+            <a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+            <!-- Caption text -->
+            <div class="caption-container">
+                <p id="caption"></p>
+            </div>
+
+            <!-- Thumbnail image controls -->
+            <!--
+            <div class="column" *ngFor="let imageUrl of currentBlogEntryGalleryUrls">
+                <img class="blogentry" style="height: 50px" [src]="imageUrl" (click)="currentSlide(1)" alt="image">
+            </div>
+    -->
+        </div>
+    </div>
+</section>
+
+<!-- Start blog entry Area -->
+<div class="post-wrapper pt-100" *ngIf="!isGallery">
+    <!-- Start post Area -->
+    <section class="post-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="single-page-post">
+                        <img class="img-fluid" [src]="createImageUrlFor(currentBlogEntry)" alt="">
+                        <div class="top-wrapper ">
+                            <div class="row d-flex justify-content-between">
+                                <h2 class="col-lg-8 col-md-12 text-uppercase">
+                                    {{currentBlogEntry.title}}
+                                </h2>
+                                <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
+                                    <div class="desc">
+                                        <h2>{{currentBlogEntry.author}}</h2>
+                                        <h3>{{currentBlogEntry.date.toLocaleString("de", { month: "short", day: "2-digit", year:"2-digit" })}}</h3>
+                                    </div>
+                                    <div class="user-img">
+                                        <!--<img src="" alt="">-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="tags">
+                            <ul>
+                                <li><a href="#">Zürich</a></li>
+                                <li><a href="#">Leben</a></li>
+                                <li><a href="#">Reisen</a></li>
+                            </ul>
+                        </div>
+                        -->
+                        <div class="single-post-content e2e-inner-html-bound" [innerHtml]="currentBlogEntryText">
+                        </div>
+                        <div class="bottom-wrapper">
+                            <div class="row">
+                                <div class="col-lg-4 single-b-wrap col-md-12">
+                                </div>
+                                <div class="col-lg-4 single-b-wrap col-md-12">
+                                </div>
+                                <div class="col-lg-4 single-b-wrap col-md-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-top-border">
+                    <h3 *ngIf="currentBlogEntryGalleryUrls.length > 0">Galerie</h3>
+                    <div class="row gallery-item">
+                        <div class="col-md-4"
+                             *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index=index; let o=odd; let e=even;"
+                             (click)="openModal(); currentSlide(index)">
+                            <!--<a [href]="imageUrl" class="img-pop-up">-->
+                            <div class="single-gallery-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
+                                <!--
+                                <img class="gallery-image" [src]="imageUrl"/>
+                                -->
+                            </div>
+                            <!--</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<!-- End blog entry Area -->
+
+
+<!-- start footer Area -->
+<footer class="footer-area section-gap" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3  col-md-12">
+                <div class="single-footer-widget">
+                    <h6>Kontakt</h6>
+                    <p>
+                        Für Feedback, Fragen oder Kontakt erreicht Ihr uns unter:
+                        <br/>
+                        <a href="mailto:erik@undlos.blog" target="_top">erik@undlos.blog</a>
+                        <br/>
+                        oder
+                        <a href="mailto:resi@undlos.blog" target="_top">resi@undlos.blog</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row footer-bottom d-flex justify-content-between">
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <p class="col-lg-8 col-sm-12 footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <div class="col-lg-4 col-sm-12 footer-social">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End footer Area -->

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, AfterViewInit} from '@angular/core';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import {JhiAlertService, JhiEventManager} from 'ng-jhipster';
 
@@ -13,17 +13,18 @@ import {ActivatedRoute} from '@angular/router'
 import {DomSanitizer, SafeValue} from "@angular/platform-browser";
 import {SafeHtml} from "@angular/platform-browser/src/security/dom_sanitization_service";
 import {HttpClient} from "@angular/common/http";
+import {CloudImageService} from "../cloud/cloud-image.service";
 
 @Component({
-    selector: 'jhi-demo',
-    templateUrl: './demo.component.html',
+    selector: 'jhi-blog-view',
+    templateUrl: './blog-view.component.html',
     styleUrls: [
-        'demo.scss'
+        'blog-view.scss'
     ], inputs: [
     ]
 
 })
-export class DemoComponent implements OnInit, AfterViewInit {
+export class BlogViewComponent implements OnInit, AfterViewInit {
 
     account: Account;
     modalRef: NgbModalRef;
@@ -41,16 +42,13 @@ export class DemoComponent implements OnInit, AfterViewInit {
     currentBlogEntryText: SafeHtml;
     imageUrls: any;
     currentBlogEntryGalleryUrls: SafeValue[] = [];
-    isNavbarCollapsed: boolean;
 
     isOverview = true;
     isGallery = false;
 
-    @Output()
-    adminButtonToggled: EventEmitter<boolean> = new EventEmitter<boolean>();
-
     slideIndex = 1;
 
+    blogEntry: BlogEntry;
 
     constructor(private principal: Principal,
                 private loginModalService: LoginModalService,
@@ -60,19 +58,32 @@ export class DemoComponent implements OnInit, AfterViewInit {
                 private blogEntryService: BlogEntryService,
                 private activatedRoute: ActivatedRoute,
                 private domSanitizer: DomSanitizer,
-                private http: HttpClient
-    ) {
-        this.isNavbarCollapsed = true;
-    }
+                private http: HttpClient,
+                private cloudImageService: CloudImageService
+    ) {}
 
     ngOnInit() {
-        console.debug("load blog entries ...");
-        this.loadBlogEntries();
-        this.loadImageUrls();
-        console.debug("demo component constructed ... ");
+        console.debug("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        console.debug("load blog view ...");
+
+        this.imageUrls = this.cloudImageService.loadImageUrls();
+        console.log("WO SIND DIE IMAGE URLS ???????");
+        console.debug(this.imageUrls);
+
+        const id = this.activatedRoute.snapshot.paramMap.get('id');
+        this.blogEntryService.find(id)
+            .subscribe(response => {
+                console.log("show current blogentry ...................");
+                console.dir(response.body);
+
+                this.blogEntry = response.body;
+                this.showBlogEntry(this.blogEntry);
+            });
+
     }
 
     ngAfterViewInit(): void {
+        window.scrollTo(0, 0);
         console.debug("After View Init");
         if (!this.isOverview) {
             let myModal = document.getElementById('myModal');
@@ -94,23 +105,6 @@ export class DemoComponent implements OnInit, AfterViewInit {
             },
             (res: HttpErrorResponse) => this.onError(res.message)
         );
-    }
-
-    /**
-     * Todo: extract to service or resource
-     */
-    private loadImageUrls() {
-        this.http.get<string[]>('api/imageurls', { params: {}, observe: 'response' })
-            .subscribe(
-                data => {
-                    console.debug(data.body);
-                    this.imageUrls = data.body;
-                    console.debug(data);
-                    console.debug("Imageurls loaded ...");
-                    console.debug(this.imageUrls);
-                },
-                err => console.log(err)
-            );
     }
 
     private assignEvenAndOddBlogEntries() {
@@ -144,6 +138,7 @@ export class DemoComponent implements OnInit, AfterViewInit {
 
     createImageUrlFor(blogEntry: BlogEntry): string {
         console.debug("-----------> pictureContentType ########################################");
+        console.dir(blogEntry);
         console.debug(blogEntry.title);
         console.debug(blogEntry.pictureContentType);
         return 'data:' + blogEntry.pictureContentType + ';base64,' + blogEntry.picture;
@@ -153,15 +148,12 @@ export class DemoComponent implements OnInit, AfterViewInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    toggleAdmin() {
-        console.debug("admin toggled in component demo.component");
-        this.adminButtonToggled.emit(true);
-    }
-
     showBlogEntry(blogEntry: BlogEntry) {
-        console.debug("-----------> showBlogEntry ##############################################");
-        this.isOverview = false;
         this.currentBlogEntry = blogEntry;
+
+        console.debug("-----------> showBlogEntry ##############################################");
+        console.dir(this.currentBlogEntry);
+
         this.currentBlogEntryText = this.trustHtml(this.currentBlogEntry.text);
 
         console.debug("-----------> set currentBlogEntryGalleryUrls to length 0 and display #####");
@@ -171,32 +163,17 @@ export class DemoComponent implements OnInit, AfterViewInit {
         console.debug("-----------> display imageUrls ###########################################");
         console.debug(this.imageUrls);
 
-
-        console.debug("-----------> display currentBlogEntry.cloudDirectorydisplay ##############");
+        console.debug("-----------> display currentBlogEntry.cloudDirectory  ####################");
         console.debug(this.currentBlogEntry.cloudDirectory);
 
         console.debug("-----------> set currentBlogEntryGalleryUrls to imageUrls and display ####");
         if (this.imageUrls[this.currentBlogEntry.cloudDirectory]) {
+
+            console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+            console.dir(this.imageUrls);
             this.currentBlogEntryGalleryUrls = this.imageUrls[this.currentBlogEntry.cloudDirectory].slice();
         }
         console.debug(this.currentBlogEntryGalleryUrls);
-
-        setTimeout(
-            () => {
-                    console.debug("scroll blogentry to the top");
-                    let blogentry = document.getElementById('blogentry');
-                    blogentry.scrollTo(0, 0);
-                    document.body.scrollTop = 0;
-                },
-            0);
-    }
-
-    showHomePageAndToggleNavbar() {
-        this.isOverview = true;
-    }
-
-    toggleNavbar() {
-        this.isNavbarCollapsed = !this.isNavbarCollapsed;
     }
 
     trustHtml(text: string) {
@@ -243,7 +220,7 @@ export class DemoComponent implements OnInit, AfterViewInit {
         console.debug(this.currentBlogEntryGalleryUrls);
 
         let slides = document.getElementsByClassName("mySlides");
-        let dots = document.getElementsByClassName("demo");
+        let dots = document.getElementsByClassName("landing");
         let captionText = document.getElementById("caption");
         if (n >= slides.length) {this.slideIndex = 0}
         if (n < 0) {this.slideIndex = slides.length}

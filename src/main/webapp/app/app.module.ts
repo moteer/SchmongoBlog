@@ -13,7 +13,7 @@ import { NotificationInterceptor } from './blocks/interceptor/notification.inter
 import { SchmongoBlogSharedModule, UserRouteAccessService } from './shared';
 import { SchmongoBlogAppRoutingModule} from './app-routing.module';
 import { SchmongoBlogHomeModule } from './home/home.module';
-import { SchmongoBlogDemoModule } from './demo/demo.module';
+import { SchmongoBlogLandingModule } from './landing/landing.module';
 import { SchmongoBlogAdminModule } from './admin/admin.module';
 import { SchmongoBlogAccountModule } from './account/account.module';
 import { SchmongoBlogEntityModule } from './entities/entity.module';
@@ -30,7 +30,8 @@ import {
 } from './layouts';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {DemoComponent} from './demo';
+import {LandingComponent} from "./landing";
+import {BlogViewComponent, BlogViewModule} from "./blog-view";
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import {DemoComponent} from './demo';
         Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         SchmongoBlogSharedModule,
         SchmongoBlogHomeModule,
-        SchmongoBlogDemoModule,
+        SchmongoBlogLandingModule,
+        BlogViewModule,
         SchmongoBlogAdminModule,
         SchmongoBlogAccountModule,
         SchmongoBlogEntityModule,
@@ -48,7 +50,8 @@ import {DemoComponent} from './demo';
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
-        DemoComponent,
+        LandingComponent,
+        BlogViewComponent,
         JhiMainComponent,
         NavbarComponent,
         ErrorComponent,

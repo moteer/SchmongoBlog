@@ -1,7 +1,7 @@
 <!-- Start Header Area -->
 <header id="navbar" class="default-header">
 
-    <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-right">
+    <nav class="navbar navbar-expand-md bg-light navbar-light justify-content-right fixed-top sticky-top sticky-navbar">
         <!-- Brand -->
         <a class="navbar-brand" href="#home">undlos.blog</a>
 
@@ -13,11 +13,11 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="#travel" (click)="showHomePageAndToggleNavbar()">Reiseleben Hier &#38; Jetzt</a></li>
-                <li class="nav-item"><a class="nav-link" href="#earlytravel" (click)="showHomePageAndToggleNavbar()">Unsere bisherigen Reisen</a></li>
-                <li class="nav-item"><a class="nav-link" href="#inspiration" (click)="showHomePageAndToggleNavbar()">Inspiration &#38; Gedanken</a></li>
-                <li class="nav-item"><a class="nav-link" href="#whoweare" (click)="showHomePageAndToggleNavbar()">Wer wir sind</a></li>
-                <li class="nav-item"><a class="nav-link" href="#contact" (click)="showHomePageAndToggleNavbar()">Kontakt</a></li>
+                <li class="nav-item"><a class="nav-link" href="#travel">Reiseleben Hier &#38; Jetzt</a></li>
+                <li class="nav-item"><a class="nav-link" href="#earlytravel">Unsere bisherigen Reisen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#inspiration">Inspiration &#38; Gedanken</a></li>
+                <li class="nav-item"><a class="nav-link" href="#whoweare">Wer wir sind</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
             </ul>
         </div>
     </nav>
@@ -25,7 +25,7 @@
 <!-- End Header Area -->
 
 <!-- start banner Area -->
-<section id="home" class="home-bg" *ngIf="isOverview">
+<section id="home" class="home-bg">
     <div class="container">
         <div class="row justify-content-center">
             <div class="banner-content d-flex align-items-top col-lg-12 col-md-12">
@@ -45,7 +45,7 @@
 <!-- End banner Area -->
 
 <!-- Start travel Area -->
-<section class="travel-area section-gap" id="travel" *ngIf="isOverview">
+<section class="travel-area section-gap" id="travel">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -61,32 +61,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenCategoryTravelBlogEntries">
+            <div class="col-lg-6"
+                 [ngClass]="{ 'travel-left': odd, 'travel-right': even }"
+                 *ngFor="let blogEntry of categoryTravelBlogEntries let odd=odd; let even=even;">
                 <div class="single-travel media pb-70" >
                     <img class="img-fluid d-flex mr-3 thumbnail-picture"
                          [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}"
-                    (click)="showBlogEntry(blogEntry)">
+                         (click)="navigateToBlogEntryView(blogEntry.id)">
                     <div class="dates">
                         <span>{{blogEntry.date.getDate()}}</span>
                         <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
                     </div>
                     <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
-                        <p>{{blogEntry.shortDescription}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddCategoryTravelBlogEntries">
-                <div class="single-travel media pb-70">
-                    <img class="img-fluid d-flex mr-3 thumbnail-picture"
-                         [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}"
-                         (click)="showBlogEntry(blogEntry)">
-                    <div class="dates">
-                        <span>{{blogEntry.date.getDate()}}</span>
-                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <h4 class="mt-0"><a routerLink="blog-view/{{blogEntry.id}}">{{blogEntry.title}}</a></h4>
                         <p>{{blogEntry.shortDescription}}</p>
                     </div>
                 </div>
@@ -97,7 +84,7 @@
 <!-- End travel Area -->
 
 <!-- Start alte Reiseberichte Area -->
-<section class="fashion-area section-gap" id="earlytravel" *ngIf="isOverview">
+<section class="fashion-area section-gap" id="earlytravel">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -131,9 +118,9 @@
                              *ngFor="let blogEntry of categoryEarlyTravelBlogEntries; let first = first;">
                             <img class="d-block w-100" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
                             <div class="carousel-caption d-md-block">
-                                <p class="carousel-title" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</p>
-                                <p class="carousel-description" (click)="showBlogEntry(blogEntry)">{{blogEntry.shortDescription}}</p>
-                                <a href="#" (click)="showBlogEntry(blogEntry)" class="btn btn-primary">Zum Eintrag</a>
+                                <p class="carousel-title">{{blogEntry.title}}</p>
+                                <p class="carousel-description">{{blogEntry.shortDescription}}</p>
+                                <a routerLink="blog-view/{{blogEntry.id}}" class="btn btn-primary">Zum Eintrag</a>
                             </div>
                         </div>
                     </div>
@@ -153,7 +140,7 @@
 <!-- End alte Reiseberichte Area -->
 
 <!-- Start inspiration Area -->
-<section class="travel-area section-gap" id="inspiration" *ngIf="isOverview">
+<section class="travel-area section-gap" id="inspiration">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -174,28 +161,19 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-6 travel-left" *ngFor="let blogEntry of evenCategoryInspirationBlogEntries">
+            <div class="col-lg-6"
+                 [ngClass]="{ 'travel-left': odd, 'travel-right': even }"
+                 *ngFor="let blogEntry of categoryInspirationBlogEntries let odd=odd; let even=even;">
                 <div class="single-travel media pb-70" >
-                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
+                    <img class="img-fluid d-flex mr-3 thumbnail-picture"
+                         [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}"
+                         (click)="navigateToBlogEntryView(blogEntry.id)">
                     <div class="dates">
                         <span>{{blogEntry.date.getDate()}}</span>
                         <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
                     </div>
                     <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
-                        <p>{{blogEntry.shortDescription}}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 travel-right" *ngFor="let blogEntry of oddCategoryInspirationBlogEntries">
-                <div class="single-travel media pb-70">
-                    <img class="img-fluid d-flex mr-3 thumbnail-picture" [src]="createImageUrlFor(blogEntry)" alt="{{blogEntry.title}}">
-                    <div class="dates">
-                        <span>{{blogEntry.date.getDate()}}</span>
-                        <p>{{blogEntry.date.toLocaleString("de", { month: "short" })}}</p>
-                    </div>
-                    <div class="media-body align-self-center">
-                        <h4 class="mt-0"><a href="#" (click)="showBlogEntry(blogEntry)">{{blogEntry.title}}</a></h4>
+                        <h4 class="mt-0"><a routerLink="blog-view/{{blogEntry.id}}">{{blogEntry.title}}</a></h4>
                         <p>{{blogEntry.shortDescription}}</p>
                     </div>
                 </div>
@@ -206,7 +184,7 @@
 <!-- End alte inspiration Area -->
 
 <!-- Start Resi und Erik Area -->
-<section class="fashion-area section-gap" id="whoweare" *ngIf="isOverview">
+<section class="fashion-area section-gap" id="whoweare">
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-70 col-lg-8">
@@ -226,7 +204,7 @@
                     <div class="card-body text-truncate">
                         <h4 class="card-title">{{blogEntry.title}}</h4>
                         <p class="card-text">{{blogEntry.shortDescription}}</p>
-                        <a href="#" (click)="showBlogEntry(blogEntry)" class="btn btn-primary">Zur Beschreibung</a>
+                        <a routerLink="blog-view/{{blogEntry.id}}" class="btn btn-primary">Zur Beschreibung</a>
                     </div>
                 </div>
             </div>
@@ -236,14 +214,14 @@
 <!-- End team Area -->
 
 <!-- The Modal/Lightbox -->
-<section *ngIf="!isOverview" style="display: inline-block">
+<section style="display: inline-block">
     <div id="myModal" class="modal">
         <span class="close cursor" (click)="closeModal()">&times;</span>
         <div class="modal-content">
 
             <div class="mySlides" *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index = index;">
                 <div class="numbertext">{{index}} / {{currentBlogEntryGalleryUrls.length}}</div>
-                <img class="demo" [src]="imageUrl" style="width:100%">
+                <img class="landing" [src]="imageUrl" style="width:100%">
             </div>
 
             <!-- Next/previous controls -->
@@ -264,80 +242,6 @@
         </div>
     </div>
 </section>
-<!-- Start blog entry Area -->
-<div class="post-wrapper pt-100" *ngIf="!isOverview && !isGallery">
-    <!-- Start post Area -->
-    <section class="post-area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="single-page-post">
-                        <img class="img-fluid" [src]="createImageUrlFor(currentBlogEntry)" alt="">
-                        <div class="top-wrapper ">
-                            <div class="row d-flex justify-content-between">
-                                <h2 class="col-lg-8 col-md-12 text-uppercase">
-                                    {{currentBlogEntry.title}}
-                                </h2>
-                                <div class="col-lg-4 col-md-12 right-side d-flex justify-content-end">
-                                    <div class="desc">
-                                        <h2>{{currentBlogEntry.author}}</h2>
-                                        <h3>{{currentBlogEntry.date.toLocaleString("de", { month: "short", day: "2-digit", year:"2-digit" })}}</h3>
-                                    </div>
-                                    <div class="user-img">
-                                        <!--<img src="" alt="">-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--
-                        <div class="tags">
-                            <ul>
-                                <li><a href="#">Zürich</a></li>
-                                <li><a href="#">Leben</a></li>
-                                <li><a href="#">Reisen</a></li>
-                            </ul>
-                        </div>
-                        -->
-                        <div class="single-post-content e2e-inner-html-bound" [innerHtml]="currentBlogEntryText">
-                        </div>
-                        <div class="bottom-wrapper">
-                            <div class="row">
-                                <div class="col-lg-4 single-b-wrap col-md-12">
-                                </div>
-                                <div class="col-lg-4 single-b-wrap col-md-12">
-                                </div>
-                                <div class="col-lg-4 single-b-wrap col-md-12">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="section-top-border">
-                    <h3 *ngIf="currentBlogEntryGalleryUrls.length > 0">Galerie</h3>
-                    <div class="row gallery-item">
-                        <div class="col-md-4"
-                             *ngFor="let imageUrl of currentBlogEntryGalleryUrls; let index=index; let o=odd; let e=even;"
-                        (click)="openModal(); currentSlide(index)">
-                            <!--<a [href]="imageUrl" class="img-pop-up">-->
-                                <div class="single-gallery-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}">
-                                    <!--
-                                    <img class="gallery-image" [src]="imageUrl"/>
-                                    -->
-                                </div>
-                            <!--</a>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-</div>
-<!-- End blog entry Area -->
-
 
 <!-- start footer Area -->
 <footer class="footer-area section-gap" id="contact">
@@ -363,9 +267,6 @@
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             <div class="col-lg-4 col-sm-12 footer-social">
             </div>
-        </div>
-        <div class="row footer-bottom d-flex justify-content-between">
-            <a href="#" (click)="toggleAdmin()" style="color: #222222">admin</a>
         </div>
     </div>
 </footer>
