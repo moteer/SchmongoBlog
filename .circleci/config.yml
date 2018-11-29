@@ -53,7 +53,9 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: gradle dependencies
+
+      - run: ls
+      - run: ./gradlew dependencies
 
       # run tests and package
       - run: ./gradlew clean test
